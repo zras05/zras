@@ -1,0 +1,98 @@
+.zras-header {
+  height: 52px;
+  box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
+  background-color: #ffffff;
+}
+
+.zras-header .row {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.zras-header .zras-logo {
+  height: 36px;
+}
+
+.zras-header .zras-nav {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+}
+
+.zras-header .zras-nav li {
+  margin: 0 20px;
+}
+
+.zras-header .zras-nav li a {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  height: 52px;
+  color: #333333;
+}
+
+.zras-header .zras-nav li.active a {
+  color: #445793;
+}
+
+.zras-header .zras-language {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+}
+
+.zras-header .zras-language li {
+  margin: 0 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.zras-header .zras-language li.active {
+  color: #445793;
+}
+
+.zras-header .logout {
+  border-left: #445793 solid 1px;
+  padding-left: 20px;
+}
+
+.zras-header .logout:hover {
+  color: #445793;
+}

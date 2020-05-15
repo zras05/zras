@@ -1,0 +1,25 @@
+@import "./vars/index.scss";
+
+$input-width: 240px;
+
+.zras-form {
+  width: $input-width;
+  margin: 100px auto 0;
+  .row {
+    width: $input-width;
+    margin-bottom: $margin-base;
+    input,
+    button {
+      @include borderRadius;
+      width: $input-width;
+      padding: 10px 20px;
+      outline: none;
+      border: none;
+    }
+  }
+}
+
+.but-base {
+  background: $color-base;
+  color: $color-white;
+}

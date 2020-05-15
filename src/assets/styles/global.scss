@@ -1,0 +1,48 @@
+@import "./vars/index.scss";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: $color-bg;
+  font-family: $fontFamily-regular;
+  font-size: $fontSize-normal;
+  color: $color-black;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: auto;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.row {
+  @include pageWidth;
+}
+
+.zras-page {
+ @include pageWidth;
+}

@@ -1,0 +1,103 @@
+@import "./vars/index.scss";
+
+$video-width: 464px;
+$video-height: 254px;
+
+.zras-video {
+  @include flexbox;
+  padding-top: $margin-base;
+  .remind {
+    width: $video-width;
+    margin-left: $margin-large;
+    p {
+      font-family: $fontFamily-bold;
+      min-height: 20px;
+    }
+  }
+  .upload {
+    @include borderRadius;
+    @include flexbox;
+    width: $video-width;
+    height: $video-height;
+    background: $color-white;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .addimg {
+      width: 60px;
+    }
+    .addinput {
+      @include borderRadius;
+      position: absolute;
+      width: $video-width;
+      height: $video-height;
+      opacity: 0;
+    }
+  }
+  .tracking {
+    width: $video-width;
+    position: relative;
+    .video {
+      @include borderRadius;
+      background: $color-white;
+      width: $video-width;
+      height: $video-height;
+      video {
+        @include borderRadius;
+        width: $video-width;
+        height: $video-height;
+      }
+    }
+    .canvas {
+      position: absolute;
+    }
+    .control {
+      @include flexbox;
+      position: absolute;
+      width: $video-width;
+      height: $video-height;
+      left: 0;
+      top: 0;
+      justify-content: center;
+      align-items: center;
+      img {
+        cursor: pointer;
+      }
+      .close {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 40px;
+      }
+    }
+    .progress {
+      position: relative;
+      width: $video-width;
+      height: 20px;
+      .progress-bg,
+      .progress-bar {
+        position: absolute;
+        height: 4px;
+        background: $color-blue;
+        @include borderRadius(8px);
+        top: 8px;
+        left: 20px;
+        cursor: pointer;
+      }
+      .progress-bg {
+        width: calc(100% - 40px);
+        opacity: 0.5;
+      }
+      .slider {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        top: 5px;
+        // left: 18px;
+        @include borderRadius;
+        background: $color-blue;
+        cursor: pointer;
+      }
+    }
+  }
+}

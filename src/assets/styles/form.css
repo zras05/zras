@@ -1,0 +1,27 @@
+.zras-form {
+  width: 240px;
+  margin: 100px auto 0;
+}
+
+.zras-form .row {
+  width: 240px;
+  margin-bottom: 30px;
+}
+
+.zras-form .row input,
+.zras-form .row button {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  width: 240px;
+  padding: 10px 20px;
+  outline: none;
+  border: none;
+}
+
+.but-base {
+  background: #445793;
+  color: #ffffff;
+}
