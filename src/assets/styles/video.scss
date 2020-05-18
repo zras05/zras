@@ -99,5 +99,27 @@ $video-height: 254px;
         cursor: pointer;
       }
     }
+    .cut-list {
+      @include flexbox;
+      justify-content: space-around;
+      width: $video-width;
+      li {
+        @include borderRadius(64px);
+        width: 64px;
+        img {
+          @include borderRadius(60px);
+          width: 60px;
+          border: transparent solid 2px;
+        }
+        &.active {
+          img {
+            border: $color-blue solid 2px;
+          }
+        }
+        &.blur {
+          filter: grayscale(100%);
+        }
+      }
+    }
   }
 }

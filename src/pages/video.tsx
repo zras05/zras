@@ -37,6 +37,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
       isPlaying: false,
       originData: '',
       originFile: '',
+      selectedImg: '',
       timeInterval: null,
       tracker: null,
       trackerTask: null,
@@ -137,7 +138,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
     }
   }
 
-  public cutImg = (urlStr: string, data: any) => {
+  public cutImg = (urlStr: string, data: any[]) => {
     if (!data.length) {
       return
     }
@@ -178,7 +179,9 @@ export const VideoClass = class extends React.Component<any & Window, any> {
             state: 'data',
             url: can.toDataURL("image/png"),
           })
-          imgList.pop()
+          if (imgList.length > 5) {
+            imgList.pop()
+          }
           this.setState({ imgList })
         }
       })
@@ -264,7 +267,6 @@ export const VideoClass = class extends React.Component<any & Window, any> {
     }
   }
 
-
   public domValidation = () => {
     const imgCanvasRef = this.canvasRef.current;
     if (!imgCanvasRef || !imgCanvasRef.getContext) {
@@ -284,6 +286,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
     }
     return { videoRef, imgCanvasRef, imgContext, trackingRef }
   }
+
   public selectedImg = (index: number, src: string) => {
     const { imgList } = this.state
     imgList.map((item: any) => {
@@ -292,8 +295,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
       }
     })
     imgList[index].active = 'active'
-    this.setState({ imgList })
-    this.props.callback({ closed: false, videoImg: src });
+    this.setState({ imgList, selectedImg: src })
   }
 
   public clearVideo = () => {
@@ -318,6 +320,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
       trackerTask.stop()
     }
   }
+
   public componentWillUnmount() {
     const { timeInterval } = this.state
     if (timeInterval) {
@@ -325,6 +328,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
     }
 
   }
+
   public render() {
     const {
       originFile, originData, barWidth,imgList,
@@ -430,6 +434,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
       </div>
     )
   }
+  
 }
 
 export const Video = connect(

@@ -21,6 +21,13 @@
   border: none;
 }
 
+.zras-form .alert-error {
+  min-height: 20px;
+  color: #ee5335;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
 .but-base {
   background: #445793;
   color: #ffffff;

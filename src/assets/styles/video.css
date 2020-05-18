@@ -166,3 +166,46 @@
   background: #445793;
   cursor: pointer;
 }
+
+.zras-video .tracking .cut-list {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+  justify-content: space-around;
+  width: 464px;
+}
+
+.zras-video .tracking .cut-list li {
+  border-radius: 64px;
+  -webkit-border-radius: 64px;
+  -moz-border-radius: 64px;
+  -o-border-radius: 64px;
+  -ms-border-radius: 64px;
+  width: 64px;
+}
+
+.zras-video .tracking .cut-list li img {
+  border-radius: 60px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -o-border-radius: 60px;
+  -ms-border-radius: 60px;
+  width: 60px;
+  border: transparent solid 2px;
+}
+
+.zras-video .tracking .cut-list li.active img {
+  border: #445793 solid 2px;
+}
+
+.zras-video .tracking .cut-list li.blur {
+  filter: grayscale(100%);
+}

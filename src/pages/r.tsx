@@ -9,15 +9,10 @@ const RClass  = class extends React.Component<any> {
     this.state = {
     }
   }
-  public componentDidMount() {
-    // const { language } = this.props
-    console.log('componentDidMount', this.props)
-  }
 
   public render() {
     const { auth } = this.props
     const { isLogging } = auth
-    console.log('render', this.props)
     if (!isLogging) {
       return (
         <div className="zras-page">
