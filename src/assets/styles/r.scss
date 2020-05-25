@@ -1,0 +1,28 @@
+@import "./vars/index.scss";
+
+.albumDirectory {
+  @include flexbox;
+  flex-direction: column;
+  li {
+    width: 50%;
+  }
+  li:nth-child(odd) {
+    width: 50%;
+  }
+  li:nth-child(even) {
+
+  }
+  .album {
+    .albumName {
+    }
+    .date {
+    }
+    .directory {
+      .singlenName {
+
+      }
+      .version {
+      }
+    }
+  }
+}

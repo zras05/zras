@@ -1,8 +1,11 @@
 import * as React from "react";
 import { connect } from 'react-redux';
 // import { Login } from './../components/login';
-import { albumDirectory, AlbumDirectoryType, DateWithPrecision, SingleType, translationDate } from "./../assets/r/datas";
+import { DateWithPrecision, translationDate } from "../assets/js";
+import { albumDirectory, AlbumDirectoryType, SingleType } from "../assets/r";
 import { mapDispatchToProps, mapStateToProps } from "./../store";
+
+import './../assets/styles/r.min.css';
 
 const RClass = class extends React.Component<any> {
   constructor(props: any) {
@@ -58,8 +61,8 @@ const RClass = class extends React.Component<any> {
                       <p className="source">{source}</p>
                       {
                         directory &&
-                        directory.map(({ singlenName, singleID, version }: SingleType) => (
-                          <div key={singleID} className="directory">
+                        directory.map(({ singlenName, singleID, version }: SingleType, index: number) => (
+                          <div key={`${albumID}-${singleID}-${index}`} className="directory">
                             <p className="singlenName">{singlenName}</p>
                             <p className="version">{version}</p>
                           </div>

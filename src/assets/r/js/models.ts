@@ -1,8 +1,4 @@
-export interface DateWithPrecision {
-  timestamp: number
-  precision?: number
-}
-
+import {DateWithPrecision} from './../../js/models';
 
 export interface SingleType {
   singleID: number

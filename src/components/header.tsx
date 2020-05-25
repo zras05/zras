@@ -20,6 +20,7 @@ const langList: ListType[] = [
 
 const navList: ListType[] = [
   { code: 'home', word: "Home" },
+  { code: 'collection', word: 'Collection' },
   { code: 'video', word: "Video" },
   { code: 'OCR', word: "OCR" },
   { code: 'r', word: "R" },

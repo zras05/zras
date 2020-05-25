@@ -1,12 +1,3 @@
-export const datePrecision = {
-  0: { str: '年', name: 'year' },
-  1: { str: '月', name: 'month' },
-  2: { str: '日', name: 'day' },
-  3: { str: '时', name: 'hour' },
-  4: { str: '分', name: 'minute' },
-  5: { str: '秒', name: 'second' },
-}
-
 export const DirectoryType = {
   0: '未收录音乐',
   1: '单曲',

@@ -1,4 +1,4 @@
-import { AlbumDirectoryType } from "./models";
+import { AlbumDirectoryType } from "./../js/models";
 
 export const albumDirectory: AlbumDirectoryType[] = [
   {
@@ -393,21 +393,21 @@ export const albumDirectory: AlbumDirectoryType[] = [
     albumID: 28,
     albumName: "Mystic Pendulum",
     date: 1335801600000,
-    source: "Twilight Hour アーシャのアトリエ〜黄昏の大地の錬金术士〜 ボーカルアルバム",
+    source: "Twilight Hour アーシャのアトリエ 〜黄昏の大地の錬金术士〜 ボーカルアルバム",
     type: 0
   },
   {
     albumID: 29,
     albumName: "Pluie",
     date: 1372176000000,
-    source: "Twilight Sky エスカ ロジーのアトリエ〜黄昏の空の錬金术士〜 ボーカルアルバム",
+    source: "Twilight Sky エスカ ロジーのアトリエ 〜黄昏の空の錬金术士〜 ボーカルアルバム",
     type: 0
   },
   {
     albumID: 30,
     albumName: "Phronesis",
     date: 1447776000000,
-    source: "PLACHTA ソフィーのアトリエ〜不思议な本の錬金术士〜ボーカルアルバム",
+    source: "PLACHTA ソフィーのアトリエ 〜不思议な本の錬金术士〜 ボーカルアルバム",
     type: 0
   },
   {
