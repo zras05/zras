@@ -23,12 +23,11 @@ language: 1
 const week = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
 const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec',]
 
-const addZero = (num: number) => (num < 10 ? "0" + num : num)
+export const addZero = (num: number) => (num < 10 ? "0" + num : num)
 
-export const translationDate = ({ timestamp, precision = 2, language = 0 }: DateWithPrecision) => {
+export const timestampToDate = ({ timestamp, precision = 2, language = 0 }: DateWithPrecision) => {
   const len = timestamp.toString().length
-  if (len < 13)
-  {
+  if (len < 13) {
     timestamp *= 1000
   }
   const date = new Date(timestamp)
@@ -49,9 +48,6 @@ export const translationDate = ({ timestamp, precision = 2, language = 0 }: Date
         case 1:
           str = `${Y}-${addZero(M)}`
           break
-        case 2:
-          str = `${Y}-${addZero(M)}-${addZero(D)}`
-          break
         case 3:
           str = `${Y}-${addZero(M)}-${addZero(D)} ${addZero(h)}`
           break
@@ -64,6 +60,7 @@ export const translationDate = ({ timestamp, precision = 2, language = 0 }: Date
         case 6:
           str = ` ${addZero(h)}:${addZero(m)} ${week[w - 1]}`
           break
+        case 2:
         default:
           str = `${Y}-${addZero(M)}-${addZero(D)}`
       }
@@ -73,9 +70,6 @@ export const translationDate = ({ timestamp, precision = 2, language = 0 }: Date
         case 0:
           str = `${month[(M - 1)]} ${addZero(D)}`
           break
-        case 1:
-          str = `${month[(M - 1)]} ${addZero(D)}, ${Y}`
-          break
         case 2:
           str = `${month[(M - 1)]} ${addZero(D)}, ${Y}, `
           if (h > 12) {
@@ -84,6 +78,7 @@ export const translationDate = ({ timestamp, precision = 2, language = 0 }: Date
             str += `${addZero(h)}:${addZero(m)}AM`
           }
           break
+        case 1:
         default:
           str = `${month[(M - 1)]} ${addZero(D)}, ${Y}`
       }

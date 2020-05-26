@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from 'react-redux';
 // import { Login } from './../components/login';
-import { DateWithPrecision, translationDate } from "../assets/js";
+import { DateWithPrecision, timestampToDate } from "../assets/js";
 import { albumDirectory, AlbumDirectoryType, SingleType } from "../assets/r";
 import { mapDispatchToProps, mapStateToProps } from "./../store";
 
@@ -21,17 +21,17 @@ const RClass = class extends React.Component<any> {
     const dateType = typeof dateStr
     switch (dateType) {
       case 'number':
-        return translationDate({ timestamp: dateStr })
+        return timestampToDate({ timestamp: dateStr })
       case 'object':
         const strArr = dateStr.map(({ timestamp, precision }: DateWithPrecision) => {
           if (!timestamp) {
             return '今'
           }
-          return translationDate({ timestamp, precision })
+          return timestampToDate({ timestamp, precision })
         })
         return strArr.join('至')
       default:
-        return translationDate({ timestamp: dateStr })
+        return timestampToDate({ timestamp: dateStr })
     }
   }
 

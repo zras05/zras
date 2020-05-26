@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const Error = class extends React.Component<any> {
+export const Date = class extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -9,9 +9,7 @@ export const Error = class extends React.Component<any> {
 
   public render() {
     return (
-      <div>
-        <p>error</p>
-      </div>
+      <div>date</div>
     )
   }
 }

@@ -20,8 +20,33 @@
 }
 
 .zras-video .remind p {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.zras-video .remind p.title {
   font-family: Avenir-Heavy, PingFangSC-Semibold, "Arial Bold", Arial, "Microsoft YaHei Bold", "微软雅黑", sans-serif;
-  min-height: 20px;
+  font-size: 14px;
+  margin: 10px 0 5px;
+}
+
+.zras-video .remind p a {
+  color: #445793;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.zras-video .remind pre {
+  background: #333333;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  margin: 10px 0;
+  overflow-x: auto;
 }
 
 .zras-video .upload {

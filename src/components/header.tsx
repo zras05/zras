@@ -21,7 +21,6 @@ const langList: ListType[] = [
 const navList: ListType[] = [
   { code: 'home', word: "Home" },
   { code: 'collection', word: 'Collection' },
-  { code: 'video', word: "Video" },
   { code: 'OCR', word: "OCR" },
   { code: 'r', word: "R" },
 ]
@@ -58,7 +57,7 @@ const HeaderClass = class extends React.Component<any, any> {
   public render() {
     const { t, language, auth } = this.props
     const { isLogging } = auth
-    const { curNav } = this.state
+    // const { curNav } = this.state
     return (
       <header className="zras-header" >
         <div className="row">
@@ -70,9 +69,9 @@ const HeaderClass = class extends React.Component<any, any> {
               navList.map(({ code, word }: ListType) => (
                 <li
                   key={code}
-                  className={curNav === code ? 'active' : ''}
+                  // className={curNav === code ? 'active' : ''}
                   onClick={this.setNav.bind(this, code)}>
-                  <NavLink to={`/${code}`}> {t(Dict[word])}</NavLink>
+                  <NavLink to={`/${code}`} activeClassName="active"> {t(Dict[word])}</NavLink>
                 </li>
               ))
             }

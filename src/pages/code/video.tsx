@@ -1,11 +1,11 @@
 import * as React from "react";
 import { connect } from 'react-redux';
-import { mapDispatchToProps, mapStateToProps } from "./../store";
+import { mapDispatchToProps, mapStateToProps } from "../../store";
 
-require('./../assets/js/tracking/tracking-min')
-require('./../assets/js/tracking/face/face-min')
+require('./../../assets/js/tracking/tracking-min')
+require('./../../assets/js/tracking/face/face-min')
 
-import './../assets/styles/video.min.css';
+import './../../assets/styles/video.min.css';
 
 declare global {
   interface Window { tracking: any; }
@@ -331,7 +331,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
 
   public render() {
     const {
-      originFile, originData, barWidth,imgList,
+      originFile, originData, barWidth, imgList,
       isHover, isClose, isPlaying,
       canvasHeight, canvasLeft, canvasTop, canvasWidth
     } = this.state
@@ -342,7 +342,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
             <div className="upload">
               <img
                 className="addimg"
-                src={require('./../assets/images/upload.png')} alt="upload"
+                src={require('./../../assets/images/upload.png')} alt="upload"
               />
               <input
                 type="file"
@@ -370,7 +370,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
                       isClose ? (
                         <img
                           className="close"
-                          src={require('./../assets/images/close.png')}
+                          src={require('./../../assets/images/close.png')}
                           alt="close"
                           onClick={this.clearVideo}
                         />
@@ -383,13 +383,13 @@ export const VideoClass = class extends React.Component<any & Window, any> {
                       isPlaying ? (
                         <img
                           className="play-pause"
-                          src={require('./../assets/images/pause.png')}
+                          src={require('./../../assets/images/pause.png')}
                           alt="playpause"
                         />
                       ) : (
                           <img
                             className="play-pause"
-                            src={require('./../assets/images/play.png')}
+                            src={require('./../../assets/images/play.png')}
                             alt="playpause"
                           />
                         )
@@ -406,35 +406,90 @@ export const VideoClass = class extends React.Component<any & Window, any> {
                   />
                 </div>
                 <ul className="cut-list">
-          {
-            imgList ? imgList.map(({ active, url, state }: any, index: number) => {
-              return (
-                <li
-                  className={active} key={index}
-                  onClick={state === 'nodata' ? (() => { return }) : 
-                  this.selectedImg.bind(this, index, url)}
-                >
-                  <img src={url} />
-                </li>
-              )
-            }) : null
-          }
-        </ul>
+                  {
+                    imgList ? imgList.map(({ active, url, state }: any, index: number) => {
+                      return (
+                        <li
+                          className={active} key={index}
+                          onClick={state === 'nodata' ? (() => { return }) :
+                            this.selectedImg.bind(this, index, url)}
+                        >
+                          <img src={url} />
+                        </li>
+                      )
+                    }) : null
+                  }
+                </ul>
               </div>
             )
         }
         <div className="remind">
-          <p>{`<video> `} 仅支持：</p>
+          <p className="title">一、{`<video> `} 仅支持：</p>
           <p>MP4: MPEG 4文件使用 H264 视频编解码器和AAC音频编解码器</p>
           <p>WebM: WebM 文件使用 VP8 视频编解码器和 Vorbis 音频编解码器</p>
           <p>Ogg: Ogg 文件使用 Theora 视频编解码器和 Vorbis音频编解码器</p>
           <p />
-          <p>非同一域名注意视频源污染（"Access-Control-Allow-Origin: *"）</p>
+          <p className="title">二、非同一域名视频源污染（"Access-Control-Allow-Origin: *"）</p>
+          <pre>
+            {`const xhr = new XMLHttpRequest();
+xhr.onload = (res: any) => {
+  const response = res.currentTarget.response
+  const reader = new FileReader();
+  reader.readAsDataURL(response);
+  reader.onloadend = (e: any) => {
+    // e.target.result 
+  }
+};
+xhr.open('GET', '视频地址', true);
+xhr.responseType = 'blob';
+xhr.send();`}
+          </pre>
+          <p className="title">
+            三、视频人脸追踪
+            <a href="https://trackingjs.com" target="_blank">tracking.js</a>
+          </p>
+          <pre>
+{`require('tracking-min')
+require('face-min')
+
+declare global {
+  interface Window { tracking: any; }
+}
+
+export const VideoClass = class extends React.Component<any & Window, any> {
+  private videoRef: React.RefObject<HTMLVideoElement>;
+  private canvasRef: React.RefObject<HTMLCanvasElement>;
+  constructor(props: any) {
+    this.videoRef = React.createRef();
+    this.canvasRef = React.createRef();
+  }
+}`}
+          </pre>
+          <pre>
+{`initTracking = () => {
+  const tracker = new window.tracking.ObjectTracker('face')
+  tracker.setInitialScale(1);
+  tracker.setStepSize(2);
+  tracker.setEdgesDensity(0.1);
+  videoRef.addEventListener('canplay', async () => {
+    trackerTask = window.tracking.track(videoRef, tracker, { camera: false });
+    tracker.on('track', (event: any) => {
+      // 追踪视频
+    });
+    trackerTask.stop()
+  });
+  videoRef.addEventListener('ended', () => {
+    videoRef.pause()
+    trackerTask.stop()
+  });
+}
+`}
+          </pre>
         </div>
       </div>
     )
   }
-  
+
 }
 
 export const Video = connect(

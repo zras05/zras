@@ -24,9 +24,7 @@ $header-height: 52px;
         padding: 0 $margin-small;
         height: $header-height;
         color: $color-black;
-      }
-      &.active {
-        a {
+        &.active {
           color: $color-base;
         }
       }
