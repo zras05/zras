@@ -80,3 +80,37 @@ a {
     padding-right: 20px;
   }
 }
+
+.code {
+  width: 960px;
+}
+
+.code p {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.code p.title {
+  font-family: Avenir-Heavy, PingFangSC-Semibold, "Arial Bold", Arial, "Microsoft YaHei Bold", "微软雅黑", sans-serif;
+  font-size: 14px;
+  margin: 10px 0 5px;
+}
+
+.code p a {
+  color: #445793;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.code pre {
+  background: #333333;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  margin: 10px 0;
+  overflow-x: auto;
+}

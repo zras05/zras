@@ -423,7 +423,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
               </div>
             )
         }
-        <div className="remind">
+        <div className="code">
           <p className="title">一、{`<video> `} 仅支持：</p>
           <p>MP4: MPEG 4文件使用 H264 视频编解码器和AAC音频编解码器</p>
           <p>WebM: WebM 文件使用 VP8 视频编解码器和 Vorbis 音频编解码器</p>

@@ -46,3 +46,29 @@ a {
 .zras-page {
  @include pageWidth;
 }
+
+.code {
+  width: $width-960;
+  p {
+    font-size: 13px;
+    line-height: 20px;
+    &.title {
+      font-family: $fontFamily-bold;
+      font-size: $fontSize-normal;
+      margin: 10px 0 5px;
+    }
+    a {
+      color: $color-blue;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+  }
+  pre {
+    background: $color-black;
+    color: $color-white;
+    padding: 20px;
+    @include borderRadius(4px);
+    margin: 10px 0;
+    overflow-x: auto;
+  }
+}
