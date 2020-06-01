@@ -86,13 +86,13 @@ a {
 }
 
 .code p {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 20px;
+  min-height: 20px;
 }
 
 .code p.title {
   font-family: Avenir-Heavy, PingFangSC-Semibold, "Arial Bold", Arial, "Microsoft YaHei Bold", "微软雅黑", sans-serif;
-  font-size: 14px;
   margin: 10px 0 5px;
 }
 

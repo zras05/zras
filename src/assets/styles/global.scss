@@ -50,11 +50,11 @@ a {
 .code {
   width: $width-960;
   p {
-    font-size: 13px;
+    font-size: $fontSize-normal;
     line-height: 20px;
+    min-height: 20px;
     &.title {
       font-family: $fontFamily-bold;
-      font-size: $fontSize-normal;
       margin: 10px 0 5px;
     }
     a {
