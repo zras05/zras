@@ -1,3 +1,6 @@
+@import "./vars/_color.scss";
+@import "./vars/_font.scss";
+@import "./vars/_page.scss";
 @import "./vars/index.scss";
 
 html,
@@ -15,12 +18,12 @@ body {
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased; 
   -moz-osx-font-smoothing: grayscale;
-  overflow: auto;
+  overflow: auto; 
 }
 
-*,
+*, 
 *:before,
 *:after {
   box-sizing: border-box;
@@ -54,13 +57,13 @@ a {
     line-height: 20px;
     min-height: 20px;
     &.title {
-      font-family: $fontFamily-bold;
+      @include fontFamily-Semibold();
       margin: 10px 0 5px;
     }
     a {
       color: $color-blue;
       cursor: pointer;
-      margin-left: 5px;
+      margin-left: 5px; 
     }
   }
   pre {
@@ -70,5 +73,5 @@ a {
     @include borderRadius(4px);
     margin: 10px 0;
     overflow-x: auto;
-  }
+  } 
 }

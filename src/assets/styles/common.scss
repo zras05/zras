@@ -1,3 +1,6 @@
+@import "./vars/_color.scss";
+@import "./vars/_font.scss";
+@import "./vars/_page.scss";
 @import "./vars/index.scss";
 
 $header-height: 52px;
@@ -14,8 +17,8 @@ $header-height: 52px;
   .zras-logo {
     height: 36px;
   }
-  .zras-nav {
-    @include flexbox;
+  .zras-nav { 
+    @include flexbox; 
     li {
       margin: 0 $margin-small;
       a {
@@ -49,3 +52,4 @@ $header-height: 52px;
     }
   }
 }
+ 

@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Loading} from "./../components/loading"
+import { NavLink} from 'react-router-dom'
+// import { Loading} from "./../components/loading"
 
 export const Home = class extends React.Component<any> {
   constructor(props: any) {
@@ -10,9 +11,11 @@ export const Home = class extends React.Component<any> {
 
   public render() {
     return (
-      <div>
-        <p>home</p>
-        <Loading />
+      <div className="zras-page zras-home">
+        {/* <Loading /> */}
+        < NavLink to={'/resume'}>
+          Resume
+        </ NavLink>
       </div>
     )
   }

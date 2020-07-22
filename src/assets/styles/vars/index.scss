@@ -1,6 +1,6 @@
-@import "./_color.scss";
-@import "./_font.scss";
-@import "./_page.scss";
+// @import "./_color.scss";
+// @import "./_font.scss";
+// @import "./_page.scss";
 
 @mixin prefix($stylename, $value) {
   #{$stylename}: $value;
@@ -11,7 +11,7 @@
 }
 
 @mixin borderRadius($radius: 10px) {
-  @include prefix("border-radius", $radius);
+  @include prefix("border-radius", $radius); 
 }
 
 @mixin flexbox {
@@ -29,7 +29,7 @@
   @media (max-width: $width-lg) and (min-width: $width-sm) {
     width: $width-lg;
     padding-left: $margin-base;
-    padding-right: $margin-base;
+    padding-right: $margin-base; 
   }
   @media (max-width: $width-sm) {
     width: 100%;

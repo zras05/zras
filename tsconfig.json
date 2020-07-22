@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "paths": {
+      "@scss/*": ["src/assets/style/*"]
+    },
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
