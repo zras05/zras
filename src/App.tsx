@@ -20,7 +20,7 @@ interface AppState {
   ready: boolean
 }
 
-class App extends React.Component<any, AppState> { 
+class App extends React.Component<any, AppState> {
 
   constructor(props: any) {
     super(props);
@@ -51,8 +51,8 @@ class App extends React.Component<any, AppState> {
             <Route exact={true} path={"/resume"} component={Resume} />
             <Route exact={true} path={"/error"} component={Error} />
             <Route exact={true} path={"/OCR"} component={OCR} />
-            <Route exact={true} path={"/workCollection"} component={WorkCollection} />
             <Route exact={true} path={"/r"} component={R} />
+            <Route exact={true} path={"/workCollection/:id?"} component={WorkCollection} />
             <Route path={"/*"} component={Error} />
           </Switch>
         </div>

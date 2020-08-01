@@ -46,23 +46,23 @@ export const timestampToDate = ({ timestamp, precision = 2, language = 0 }: Date
           str = `${Y}`
           break
         case 1:
-          str = `${Y}-${addZero(M)}`
+          str = `${Y}.${addZero(M)}`
           break
         case 3:
-          str = `${Y}-${addZero(M)}-${addZero(D)} ${addZero(h)}`
+          str = `${Y}.${addZero(M)}.${addZero(D)} ${addZero(h)}`
           break
         case 4:
-          str = `${Y}-${addZero(M)}-${addZero(D)} ${addZero(h)}:${addZero(m)}`
+          str = `${Y}.${addZero(M)}.${addZero(D)} ${addZero(h)}:${addZero(m)}`
           break
         case 5:
-          str = `${Y}-${addZero(M)}-${addZero(D)} ${addZero(h)}:${addZero(m)}:${addZero(s)}`
+          str = `${Y}.${addZero(M)}.${addZero(D)} ${addZero(h)}:${addZero(m)}:${addZero(s)}`
           break
         case 6:
           str = ` ${addZero(h)}:${addZero(m)} ${week[w - 1]}`
           break
         case 2:
         default:
-          str = `${Y}-${addZero(M)}-${addZero(D)}`
+          str = `${Y}.${addZero(M)}.${addZero(D)}`
       }
       break
     case 1:
@@ -84,7 +84,7 @@ export const timestampToDate = ({ timestamp, precision = 2, language = 0 }: Date
       }
       break
     default:
-      str = `${Y}-${addZero(M)}-${addZero(D)}`
+      str = `${Y}.${addZero(M)}.${addZero(D)}`
   }
   return str
 }

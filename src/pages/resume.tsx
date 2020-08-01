@@ -5,11 +5,12 @@ import { NavLink } from 'react-router-dom';
 import { resume } from 'src/assets/data/resume.js';
 import female from 'src/assets/images/female.svg';
 import 'src/assets/styles/resume.min.css';
+import { ResumeLogo } from 'src/components/resume/resumeLogo';
 
 export const Resume = class extends React.Component<any> {
   constructor(props: any) {
     super(props);
-    this.state = { 
+    this.state = {
     }
   }
 
@@ -19,17 +20,7 @@ export const Resume = class extends React.Component<any> {
     const educationStr = education.join(' / ')
     return (
       <div className="zras-resume resume-info">
-        <div className="resume-logo">
-          <div className="logo-img">
-            <img src={require('./../assets/images/logo.png')} alt="logo" />
-          </div>
-          <div className="logo-border">
-            <div className="logo-bottom" />
-            <div className="logo-top" />
-            <div className="logo-left" /> 
-            <div className="logo-right" />
-          </div>
-        </div>
+        <ResumeLogo />
         <div className="resume-cont">
           <p className="name">{name}<img src={female} className="sex" alt="female" /></p>
           <p>{workStr}</p>
@@ -38,13 +29,13 @@ export const Resume = class extends React.Component<any> {
           <p>
             <Room /><span>{address}</span>
             <PhoneIphone /><span>{phone}</span>
-            <MailOutline /><span style={{marginRight: 0}}>{email}</span>
+            <MailOutline /><span style={{ marginRight: 0 }}>{email}</span>
           </p>
-          <p className="collection">
-            <NavLink to={'/workCollection'} className="zras-logo">
+          <p className="toCollection">
+            <NavLink to={'/workCollection'}>
               作品集
             </NavLink >
-          </p> 
+          </p>
         </div>
       </div>
     )
