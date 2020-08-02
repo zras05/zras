@@ -342,7 +342,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
             <div className="upload">
               <img
                 className="addimg"
-                src={require('./../../assets/images/upload.png')} alt="upload"
+                src={require('src/assets/images/upload.png')} alt="upload"
               />
               <input
                 type="file"
@@ -370,7 +370,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
                       isClose ? (
                         <img
                           className="close"
-                          src={require('./../../assets/images/close.png')}
+                          src={require('src/assets/images/close.png')}
                           alt="close"
                           onClick={this.clearVideo}
                         />
@@ -383,7 +383,7 @@ export const VideoClass = class extends React.Component<any & Window, any> {
                       isPlaying ? (
                         <img
                           className="play-pause"
-                          src={require('./../../assets/images/pause.png')}
+                          src={require('src/assets/images/pause.png')}
                           alt="playpause"
                         />
                       ) : (

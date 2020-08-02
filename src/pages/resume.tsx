@@ -8,6 +8,7 @@ import 'src/assets/styles/resume.min.css';
 import { ResumeLogo } from 'src/components/resume/resumeLogo';
 
 export const Resume = class extends React.Component<any> {
+
   constructor(props: any) {
     super(props);
     this.state = {

@@ -2,12 +2,20 @@
 @import "./vars/_font.scss";
 @import "./vars/index.scss";
 
+@mixin label {
+  color: $color-base;
+  border: 1px solid $color-base;
+  padding: 6px 10px;
+  border-radius: 40px;
+  margin: 10px;
+}
 .zras-resume {
   height: 100vh;
   overflow: hidden;
   @include flexbox;
   position: relative;
   justify-content: space-between;
+  min-width: 1200px;
   .resume-logo {
     width: 150px;
     height: 150px;
@@ -150,7 +158,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding-top: 275px;
-    width: 200px;
+    width: 240px;
     background: $color-base;
     height: 100vh;
     animation: 2s linear 0.1s reverse both resumeShowAnimation;
@@ -187,96 +195,141 @@
   }
   .resume-right {
     @include flexbox;
-    width: calc(100vw - 200px);
+    width: calc(100vw - 240px);
     height: 100vh;
     animation: 2s linear 0.1s reverse both resumeShowAnimation;
     padding-top: 100px;
     flex-direction: column;
-    .work-experience {
-      .item {
+  }
+}
+
+.work-experience {
+  .item {
+    @include flexbox;
+    justify-content: center;
+    .left {
+      padding-right: 20px;
+      padding-top: 10px;
+      .time {
+        color: $color-base;
+        line-height: 20px;
+      }
+    }
+    .center {
+      align-self: stretch;
+      border-left: 1px solid $color-base;
+      position: relative;
+      span {
         @include flexbox;
         justify-content: center;
-        .left {
-          padding-right: 20px;
-          padding-top: 10px;
-          .time {
-            color: $color-base;
-            line-height: 20px;
-          }
-        }
-        .center {
-          align-self: stretch;
-          border-left: 1px solid $color-base;
-          position: relative;
-          span {
-            @include flexbox;
-            justify-content: center;
-            align-items: center;
-            width: 20px;
-            height: 20px;
-            border-radius: 20px;
-            border: 1px solid $color-base;
-            background: $color-bg;
-            position: absolute;
-            left: -10px;
-            top: 10px;
-            i {
-              width: 10px;
-              height: 10px;
-              display: inline-block;
-              border-radius: 10px;
-              background: $color-base;
-            }
-          }
-        }
-        .right {
-          min-height: 100px;
-          width: 600px;
-          flex: 0 0 auto;
-          padding-bottom: 50px;
-          padding-left: 20px;
-          .company {
-            @include flexbox;
-            img {
-              width: 45px;
-              border-radius: 8px;
-              margin-right: 10px;
-            }
-            span {
-              @include flexbox;
-              flex-direction: column;
-              .name {
-                font-style: normal;
-                font-size: 16px;
-              }
-              .work {
-                font-style: normal;
-              }
-            }
-          }
-          .label,
-          .describe {
-            margin-top: 20px;
-            span {
-              margin: 10px;
-            }
-          }
-          .describe {
-            p {
-              margin: 10px;
-            }
-          }
-          .label {
-            span {
-              color: $color-base;
-              border: 1px solid $color-base;
-              padding: 6px 10px;
-              border-radius: 40px;
-            }
-          }
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 20px;
+        border: 1px solid $color-base;
+        background: $color-bg;
+        position: absolute;
+        left: -10px;
+        top: 10px;
+        i {
+          width: 10px;
+          height: 10px;
+          display: inline-block;
+          border-radius: 10px;
+          background: $color-base;
         }
       }
     }
+    .right {
+      min-height: 100px;
+      width: 600px;
+      flex: 0 0 auto;
+      padding-bottom: 50px;
+      padding-left: 20px;
+      .company {
+        @include flexbox;
+        img {
+          width: 45px;
+          border-radius: 8px;
+          margin-right: 10px;
+        }
+        span {
+          @include flexbox;
+          flex-direction: column;
+          .name {
+            font-style: normal;
+            font-size: 16px;
+            @include fontFamily-Semibold;
+          }
+          .work {
+            margin-top: 5px;
+            font-style: normal;
+          }
+        }
+      }
+      .label,
+      .describe {
+        margin-top: 20px;
+      }
+      .describe {
+        p {
+          margin: 10px;
+        }
+      }
+      .label {
+        span {
+          @include label;
+        }
+      }
+    }
+  }
+}
+
+.work-details {
+  width: 800px;
+  margin: 0 auto;
+  .name {
+    @include flexbox;
+    font-size: 20px;
+    @include fontFamily-Semibold;
+    align-items: baseline;
+    margin-bottom: 5px;
+    .time {
+      margin-left: 10px;
+      font-size: 14px;
+      font-family: $fontFamily-regular;
+    }
+  }
+  .link {
+    margin-bottom: 5px;
+    a {
+      text-decoration: underline;
+      font-size: 14px;
+      color: $color-base;
+    }
+  }
+  .skills {
+    margin: {
+      top: 10px;
+      bottom: 10px;
+    }
+    p {
+      padding: 10px 0;
+      .type {
+        margin-right: 10px;
+      }
+      .label {
+        @include label;
+      }
+    }
+  }
+  .functions, .introduction {
+    p {
+      line-height: 2;
+    }
+  }
+  .introduction {
+    margin-top: 20px;
   }
 }
 
@@ -333,7 +386,7 @@
 }
 @keyframes logoWrapLeftAnimation {
   0% {
-    left: 25px;
+    left: 45px;
   }
   50% {
     left: calc(50vw - 75px);

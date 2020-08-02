@@ -1,8 +1,9 @@
 import * as React from "react";
-import { workExperience } from 'src/assets/data/resume.js';
+import { withRouter } from 'react-router';
+import { companyLogos, workExperience } from 'src/assets/data/resume.js';
 import { timestampToDate } from 'src/assets/js/date';
 
-export const WorkExperience = class extends React.Component<any, any> {
+const experience = class extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -29,7 +30,7 @@ export const WorkExperience = class extends React.Component<any, any> {
           </div>
         </div>
         {
-          workExperience.map(({ cid, describe, label, logo, name, time, work }: any) => (
+          workExperience.map(({ cid, describe, label, name, time, work }: any) => (
             <div className="item" key={cid}>
               <div className="left">
                 <p className="time">
@@ -41,7 +42,7 @@ export const WorkExperience = class extends React.Component<any, any> {
               </div>
               <div className="right">
                 <p className="company">
-                  {/* <img className="company-logo" src={require(`src/assets/images/${logo}`)} alt="logo" /> */}
+                  <img className="company-logo" src={companyLogos[cid]} alt="logo" />
                   <span>
                     <i className="name">{name}</i>
                     <i className="work">{work}</i>
@@ -67,3 +68,5 @@ export const WorkExperience = class extends React.Component<any, any> {
     )
   }
 }
+
+export const WorkExperience = withRouter(experience)

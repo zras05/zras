@@ -35,8 +35,6 @@ const RClass = class extends React.Component<any> {
     }
   }
 
-
-
   public render() {
     const { auth } = this.props
     const { isLogging } = auth

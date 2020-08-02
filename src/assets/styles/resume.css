@@ -14,6 +14,7 @@
   display: flex;
   position: relative;
   justify-content: space-between;
+  min-width: 1200px;
 }
 
 .zras-resume .resume-logo {
@@ -209,7 +210,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding-top: 275px;
-  width: 200px;
+  width: 240px;
   background: #445793;
   height: 100vh;
   animation: 2s linear 0.1s reverse both resumeShowAnimation;
@@ -261,14 +262,14 @@
   display: -ms-flexbox;
   /* IE 10 */
   display: flex;
-  width: calc(100vw - 200px);
+  width: calc(100vw - 240px);
   height: 100vh;
   animation: 2s linear 0.1s reverse both resumeShowAnimation;
   padding-top: 100px;
   flex-direction: column;
 }
 
-.resume-workCollection .resume-right .work-experience .item {
+.work-experience .item {
   display: -webkit-box;
   /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
   display: -moz-box;
@@ -283,23 +284,23 @@
   justify-content: center;
 }
 
-.resume-workCollection .resume-right .work-experience .item .left {
+.work-experience .item .left {
   padding-right: 20px;
   padding-top: 10px;
 }
 
-.resume-workCollection .resume-right .work-experience .item .left .time {
+.work-experience .item .left .time {
   color: #445793;
   line-height: 20px;
 }
 
-.resume-workCollection .resume-right .work-experience .item .center {
+.work-experience .item .center {
   align-self: stretch;
   border-left: 1px solid #445793;
   position: relative;
 }
 
-.resume-workCollection .resume-right .work-experience .item .center span {
+.work-experience .item .center span {
   display: -webkit-box;
   /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
   display: -moz-box;
@@ -323,7 +324,7 @@
   top: 10px;
 }
 
-.resume-workCollection .resume-right .work-experience .item .center span i {
+.work-experience .item .center span i {
   width: 10px;
   height: 10px;
   display: inline-block;
@@ -331,7 +332,7 @@
   background: #445793;
 }
 
-.resume-workCollection .resume-right .work-experience .item .right {
+.work-experience .item .right {
   min-height: 100px;
   width: 600px;
   flex: 0 0 auto;
@@ -339,7 +340,7 @@
   padding-left: 20px;
 }
 
-.resume-workCollection .resume-right .work-experience .item .right .company {
+.work-experience .item .right .company {
   display: -webkit-box;
   /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
   display: -moz-box;
@@ -353,13 +354,13 @@
   display: flex;
 }
 
-.resume-workCollection .resume-right .work-experience .item .right .company img {
+.work-experience .item .right .company img {
   width: 45px;
   border-radius: 8px;
   margin-right: 10px;
 }
 
-.resume-workCollection .resume-right .work-experience .item .right .company span {
+.work-experience .item .right .company span {
   display: -webkit-box;
   /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
   display: -moz-box;
@@ -374,34 +375,102 @@
   flex-direction: column;
 }
 
-.resume-workCollection .resume-right .work-experience .item .right .company span .name {
+.work-experience .item .right .company span .name {
   font-style: normal;
   font-size: 16px;
+  font-family: PingFangSC-Semibold, Arial, "Microsoft YaHei", sans-serif;
+  font-weight: bold;
 }
 
-.resume-workCollection .resume-right .work-experience .item .right .company span .work {
+.work-experience .item .right .company span .work {
+  margin-top: 5px;
   font-style: normal;
 }
 
-.resume-workCollection .resume-right .work-experience .item .right .label,
-.resume-workCollection .resume-right .work-experience .item .right .describe {
+.work-experience .item .right .label,
+.work-experience .item .right .describe {
   margin-top: 20px;
 }
 
-.resume-workCollection .resume-right .work-experience .item .right .label span,
-.resume-workCollection .resume-right .work-experience .item .right .describe span {
+.work-experience .item .right .describe p {
   margin: 10px;
 }
 
-.resume-workCollection .resume-right .work-experience .item .right .describe p {
-  margin: 10px;
-}
-
-.resume-workCollection .resume-right .work-experience .item .right .label span {
+.work-experience .item .right .label span {
   color: #445793;
   border: 1px solid #445793;
   padding: 6px 10px;
   border-radius: 40px;
+  margin: 10px;
+}
+
+.work-details {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.work-details .name {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+  font-size: 20px;
+  font-family: PingFangSC-Semibold, Arial, "Microsoft YaHei", sans-serif;
+  font-weight: bold;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.work-details .name .time {
+  margin-left: 10px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular, Arial, "Microsoft Yahei", sans-serif;
+}
+
+.work-details .link {
+  margin-bottom: 5px;
+}
+
+.work-details .link a {
+  text-decoration: underline;
+  font-size: 14px;
+  color: #445793;
+}
+
+.work-details .skills {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.work-details .skills p {
+  padding: 10px 0;
+}
+
+.work-details .skills p .type {
+  margin-right: 10px;
+}
+
+.work-details .skills p .label {
+  color: #445793;
+  border: 1px solid #445793;
+  padding: 6px 10px;
+  border-radius: 40px;
+  margin: 10px;
+}
+
+.work-details .functions p, .work-details .introduction p {
+  line-height: 2;
+}
+
+.work-details .introduction {
+  margin-top: 20px;
 }
 
 @keyframes logoBorderBgAnimation {
@@ -462,7 +531,7 @@
 
 @keyframes logoWrapLeftAnimation {
   0% {
-    left: 25px;
+    left: 45px;
   }
   50% {
     left: calc(50vw - 75px);
