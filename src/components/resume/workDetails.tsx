@@ -1,7 +1,9 @@
 import * as React from "react";
 import { withRouter } from 'react-router';
+import { projectLists } from 'src/assets/data/project/index.js';
 import { companyLists } from 'src/assets/data/resume.js';
 import { timestampToDate } from 'src/assets/js/date';
+import { Carousel } from "src/components/resume/carousel"
 
 const workDetails = class extends React.Component<any, any> {
 
@@ -11,7 +13,7 @@ const workDetails = class extends React.Component<any, any> {
     const curid = curProject.pid
     if (nextid !== curid) {
       return {
-        curid:nextid
+        curid: nextid
       }
     }
     return null
@@ -32,12 +34,12 @@ const workDetails = class extends React.Component<any, any> {
     this.getProject(pid)
   }
 
-  public componentDidUpdate (prevProps: any) {
-    if(prevProps.match.params.id!==this.state.curid){
+  public componentDidUpdate(prevProps: any) {
+    if (prevProps.match.params.id !== this.state.curid) {
       this.getProject(this.state.curid)
+    }
   }
-  }
-  public getProject (pid: string) {
+  public getProject(pid: string) {
     for (const i in companyLists) {
       if (companyLists[i]) {
         const item = companyLists[i].project
@@ -63,7 +65,7 @@ const workDetails = class extends React.Component<any, any> {
 
   public render() {
     const { project } = this.state
-    const { name, skills, link, functions, introduction, timeStr } = project
+    const { name, skills, link, functions, introduction, timeStr, pid } = project
     return (
       <div className="work-details">
         <p className="name">
@@ -76,7 +78,7 @@ const workDetails = class extends React.Component<any, any> {
         <div className="skills">
           {
             skills ? skills.map(({ label, type }: any, index: number) => (
-              <p key={index} style={type ? {} : {marginLeft: '-10px'}}>
+              <p key={index} style={type ? {} : { marginLeft: '-10px' }}>
                 {
                   type ? <span className="type">{type}:</span> : ''
                 }
@@ -89,6 +91,9 @@ const workDetails = class extends React.Component<any, any> {
             )) : ''
           }
         </div>
+        {
+          projectLists[pid] ? <Carousel imglist={projectLists[pid].imglist} /> : ''
+        }
         <div className="functions">
           <p>负责功能：</p>
           {
