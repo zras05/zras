@@ -87,11 +87,14 @@ const HeaderClass = class extends React.Component<any, any> {
                 </li>
               ))
             }
-            {isLogging ? (
-              <li className="logout" onClick={this.logout}>
-                {t(Dict.Logout)}
-              </li>
-            ) : null
+            {
+              isLogging
+                ? (
+                  <li className="logout" onClick={this.logout}>
+                    {t(Dict.Logout)}
+                  </li>
+                )
+                : null
             }
           </ul>
         </div>

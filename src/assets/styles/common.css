@@ -96,3 +96,14 @@
 .zras-header .logout:hover {
   color: #445793;
 }
+
+.zras-noHeader {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 9;
+}
+
+.zras-noHeader a {
+  color: #445793;
+}

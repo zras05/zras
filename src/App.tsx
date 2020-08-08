@@ -3,7 +3,8 @@ import { Provider } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { createStore } from "redux";
-// import { Header } from "./components/header";
+import { Header } from "./components/header";
+import { NoHeader } from "./components/noHeader";
 import { Error } from "./pages/errorPage";
 import { Home } from "./pages/home";
 import { OCR } from "./pages/OCR";
@@ -20,6 +21,8 @@ interface AppState {
   ready: boolean
 }
 
+const noHeader: string[] = ['resume', 'workCollection']
+
 class App extends React.Component<any, AppState> {
 
   constructor(props: any) {
@@ -35,6 +38,14 @@ class App extends React.Component<any, AppState> {
 
   public render() {
     const { ready } = this.state
+    const curPath = this.props.location.pathname.split('/')[1]
+    let  isShowHeader: boolean = true
+
+    for (const i in noHeader) {
+      if (noHeader[i] === curPath) {
+        isShowHeader = false
+      }
+    }
     if (!ready) {
       return <div className="micmic">
         <div className="loading">Loading...</div>
@@ -44,7 +55,9 @@ class App extends React.Component<any, AppState> {
     return (
       <Provider store={store}>
         <div className="App">
-          {/* <Header /> */}
+          {
+            isShowHeader ? <Header /> : <NoHeader />
+          }
           <Switch>
             <Redirect exact={true} path={"/"} from={"/"} to={"/home"} />
             <Route exact={true} path={"/home"} component={Home} />
