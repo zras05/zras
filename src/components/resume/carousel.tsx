@@ -26,27 +26,49 @@ const Mask = styled.default.div`
   top: 0;
   background: rgba(0,0,0,0.2);
 `
-const Img = styled.default.img`
-  height: ${height}px;
-  width: auto;
-`
 const Popup = styled.default.div`
   height: 100%;
   width: 100%;
   position: fixed;
+  overflow: auto;
   left: 0;
   top: 0;
   background: rgba(0,0,0,0.2);
   text-align: center;
+  padding: 20vh 0;
 `
-const Popupimg = styled.default.img`
-  height: 60vh;
-  width: auto;
-  margin-top: 20vh;
+const closeIconStyle = {
+  color: '#ffffff',
+  height: '60px',
+  position: 'fixed',
+  right: ' 20px',
+  top: '10px',
+  width: '60px'
+} as React.CSSProperties;
 
-`
+const carouselSpanStyle = {
+  background: 'rgb(0 0 0 / 0.35)',
+  bottom: 0,
+  color: '#fff',
+  lineHeight: '28px',
+  margin: 0,
+  paddingLeft: '8px',
+  position: 'absolute',
+  width: '100%'
+} as React.CSSProperties;
 
 export const Carousel = class extends React.Component<any, any> {
+
+  public static getDerivedStateFromProps(nextProps: any, currentState: any) {
+    const nextid = nextProps.pid
+    const curid = currentState.pid
+    if (nextid !== curid) {
+      return {
+        pid: nextid
+      }
+    }
+    return null
+  }
 
   constructor(props: any) {
     super(props);
@@ -55,6 +77,7 @@ export const Carousel = class extends React.Component<any, any> {
       curIndex: 1,
       divWidth: 0,
       imgWidth: 0,
+      pid: null
     }
   }
 
@@ -66,7 +89,7 @@ export const Carousel = class extends React.Component<any, any> {
   public imgClicked = (index: number) => {
     const { imglist } = this.props
     this.setState({
-      curImg: imglist[index]
+      curImg: imglist[index].url
     })
   }
   public closePopup = () => {
@@ -75,53 +98,59 @@ export const Carousel = class extends React.Component<any, any> {
     })
   }
 
-  public async componentDidMount() {
-    const { imglist } = this.props
+  public initComp() {
+    const { imglist, pid } = this.props
     const len = imglist.length
-    const img = new Image()
-    img.onload = () => {
-      const imgWidth = Math.round(height * img.width / img.height)
-      this.setState({
-        curIndex: len - 1,
-        divWidth: Math.round((totalWidth - imgWidth) / (len - 1)),
-        imgWidth,
-      })
+    let imgWidth = 0
+    let divWidth = 0
+    if (len > 2) {
+      imgWidth = Math.round(totalWidth / len * 2)
+      divWidth = Math.floor((totalWidth - imgWidth) / (len - 1))
+    } else {
+      imgWidth = totalWidth / 2
+      divWidth = totalWidth / 2
     }
-    img.src = imglist[(len - 1)]
+    this.setState({
+      curIndex: len - 1,
+      divWidth,
+      imgWidth,
+      pid
+    })
   }
+  public componentDidUpdate(prevProps: any) {
+    if (prevProps.pid !== this.state.pid) {
+      this.initComp()
+    }
+  }
+  public componentDidMount() {
+    this.initComp()
+  }
+
   public render() {
     const { imglist } = this.props
     const { imgWidth, divWidth, curIndex, curImg } = this.state
     return (
       <Wrap>
         {
-          imglist ? imglist.map((src: string, index: number) => (
+          imglist ? imglist.map(({ url, describe }: any, index: number) => (
             <Item
               key={index}
               onClick={this.imgClicked.bind(this, index)}
               onMouseOver={this.mouseEnter.bind(this, index)}
               style={index === curIndex ? { width: imgWidth + 'px' } : { width: divWidth + 'px' }}
             >
-              <Mask
-                style={index === curIndex ? { opacity: 0 } : { opacity: 1 }}
-              />
-              <Img src={src} />
+              <Mask style={index === curIndex ? { opacity: 0 } : { opacity: 1 }} />
+              <img src={url} style={{ width: '400px' }} />
+              <p style={index === curIndex ? carouselSpanStyle : { display: 'none' }}>{describe}</p>
             </Item>
           )) : ''
         }
         <Popup style={curImg ? { display: 'block' } : { display: 'none' }}>
           <Close
             onClick={this.closePopup.bind(this, curImg)}
-            style={{
-              color: '#ffffff',
-              height: '60px',
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              width: '60px',
-            }}
+            style={closeIconStyle}
           />
-          <Popupimg src={curImg} />
+          <img src={curImg} style={{ width: '600px' }} />
         </Popup>
       </Wrap>
     )

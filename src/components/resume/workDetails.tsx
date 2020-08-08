@@ -1,6 +1,6 @@
 import * as React from "react";
 import { withRouter } from 'react-router';
-import { projectLists } from 'src/assets/data/project/index.js';
+import { projectLists } from 'src/assets/data/projects/index.js';
 import { companyLists } from 'src/assets/data/resume.js';
 import { timestampToDate } from 'src/assets/js/date';
 import { Carousel } from "src/components/resume/carousel"
@@ -26,6 +26,7 @@ const workDetails = class extends React.Component<any, any> {
       project: {},
     }
   }
+
   public componentDidMount() {
     const pid = this.props.match.params.id
     if (!pid) {
@@ -92,7 +93,7 @@ const workDetails = class extends React.Component<any, any> {
           }
         </div>
         {
-          projectLists[pid] ? <Carousel imglist={projectLists[pid].imglist} /> : ''
+          projectLists[pid] ? <Carousel imglist={projectLists[pid].imglist} pid={pid} /> : ''
         }
         <div className="functions">
           <p>负责功能：</p>
