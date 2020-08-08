@@ -6,12 +6,16 @@ import * as React from "react";
 // import { Route, Switch } from 'react-router';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { companyLists } from 'src/assets/data/resume.js';
+import { companyLists } from 'src/assets/data/resume';
 import 'src/assets/styles/resume.min.css';
 import { ResumeLogo } from 'src/components/resume/resumeLogo';
 import { WorkDetails } from 'src/components/resume/workDetails';
 import { WorkExperience } from 'src/components/resume/workExperience';
 
+interface LeftListsModel {
+  pid: string
+  name: string
+}
 class Collection extends React.Component<any, any> {
 
   constructor(props: any) {
@@ -29,7 +33,7 @@ class Collection extends React.Component<any, any> {
 
   public render() {
     const id = this.props.match.params.id
-    let leftLists: any[] = []
+    let leftLists: LeftListsModel[] = []
     for (const i in companyLists) {
       if (companyLists[i]) {
         leftLists = [...leftLists, ...companyLists[i].project]
@@ -41,7 +45,7 @@ class Collection extends React.Component<any, any> {
         <div className="resume-left">
           <List component="div" className="company-lists">
             {
-              leftLists.map(({ pid, name }: any) => (
+              leftLists.map(({ pid, name }: LeftListsModel) => (
                 <ListItem key={pid} className="item"
                   selected={selectedIndex === pid}
                   onClick={this.handleListItemClick.bind(this, pid)}

@@ -10,6 +10,7 @@ const Wrap = styled.default.div`
   width: ${totalWidth}px;
   height: ${height}px;
   overflow: hidden;
+  margin-bottom: 20px;
 `
 const Item = styled.default.div`
   height: ${height}px;
@@ -57,9 +58,27 @@ const carouselSpanStyle = {
   width: '100%'
 } as React.CSSProperties;
 
-export const Carousel = class extends React.Component<any, any> {
+interface ImglistModel {
+  url: string
+  describe: string
+}
 
-  public static getDerivedStateFromProps(nextProps: any, currentState: any) {
+interface Props {
+  imglist: ImglistModel[]
+  pid: string
+}
+
+interface States {
+  curImg: string
+  curIndex: number
+  divWidth: number
+  imgWidth: number
+  pid:  string | undefined
+}
+
+export const Carousel = class extends React.Component<Props, States> {
+
+  public static getDerivedStateFromProps(nextProps: Props, currentState: States) {
     const nextid = nextProps.pid
     const curid = currentState.pid
     if (nextid !== curid) {
@@ -70,14 +89,14 @@ export const Carousel = class extends React.Component<any, any> {
     return null
   }
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      curImg: null,
+      curImg: '',
       curIndex: 1,
       divWidth: 0,
       imgWidth: 0,
-      pid: null
+      pid: undefined
     }
   }
 
@@ -94,7 +113,7 @@ export const Carousel = class extends React.Component<any, any> {
   }
   public closePopup = () => {
     this.setState({
-      curImg: null
+      curImg: ''
     })
   }
 
@@ -103,12 +122,12 @@ export const Carousel = class extends React.Component<any, any> {
     const len = imglist.length
     let imgWidth = 0
     let divWidth = 0
-    if (len > 2) {
+    if (len > 3) {
       imgWidth = Math.round(totalWidth / len * 2)
       divWidth = Math.floor((totalWidth - imgWidth) / (len - 1))
     } else {
-      imgWidth = totalWidth / 2
-      divWidth = totalWidth / 2
+      imgWidth = totalWidth / len
+      divWidth = totalWidth / len
     }
     this.setState({
       curIndex: len - 1,
@@ -117,7 +136,7 @@ export const Carousel = class extends React.Component<any, any> {
       pid
     })
   }
-  public componentDidUpdate(prevProps: any) {
+  public componentDidUpdate(prevProps: Props) {
     if (prevProps.pid !== this.state.pid) {
       this.initComp()
     }
@@ -132,18 +151,20 @@ export const Carousel = class extends React.Component<any, any> {
     return (
       <Wrap>
         {
-          imglist ? imglist.map(({ url, describe }: any, index: number) => (
-            <Item
-              key={index}
-              onClick={this.imgClicked.bind(this, index)}
-              onMouseOver={this.mouseEnter.bind(this, index)}
-              style={index === curIndex ? { width: imgWidth + 'px' } : { width: divWidth + 'px' }}
-            >
-              <Mask style={index === curIndex ? { opacity: 0 } : { opacity: 1 }} />
-              <img src={url} style={{ width: '400px' }} />
-              <p style={index === curIndex ? carouselSpanStyle : { display: 'none' }}>{describe}</p>
-            </Item>
-          )) : ''
+          imglist
+            ? imglist.map(({ url, describe }: ImglistModel, index: number) => (
+              <Item
+                key={index}
+                onClick={this.imgClicked.bind(this, index)}
+                onMouseOver={this.mouseEnter.bind(this, index)}
+                style={index === curIndex ? { width: imgWidth + 'px' } : { width: divWidth + 'px' }}
+              >
+                <Mask style={index === curIndex ? { opacity: 0 } : { opacity: 1 }} />
+                <img src={url} style={{ width: '400px' }} />
+                <p style={index === curIndex ? carouselSpanStyle : { display: 'none' }}>{describe}</p>
+              </Item>
+            ))
+            : ''
         }
         <Popup style={curImg ? { display: 'block' } : { display: 'none' }}>
           <Close

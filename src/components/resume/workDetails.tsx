@@ -1,13 +1,19 @@
 import * as React from "react";
 import { withRouter } from 'react-router';
-import { projectLists } from 'src/assets/data/projects/index.js';
-import { companyLists } from 'src/assets/data/resume.js';
+import { ProjectModel, SkillModel } from 'src/assets/data/models';
+import { projectLists } from 'src/assets/data/projects';
+import { companyLists } from 'src/assets/data/resume';
 import { timestampToDate } from 'src/assets/js/date';
-import { Carousel } from "src/components/resume/carousel"
+import { Carousel } from "src/components/resume/carousel";
 
-const workDetails = class extends React.Component<any, any> {
+interface States {
+  curid: string
+  project: ProjectModel
+}
 
-  public static getDerivedStateFromProps(nextProps: any, currentState: any) {
+const workDetails = class extends React.Component<any, States> {
+
+  public static getDerivedStateFromProps(nextProps: any, currentState: States) {
     const nextid = nextProps.match.params.id
     const curProject = currentState.project
     const curid = curProject.pid
@@ -23,7 +29,14 @@ const workDetails = class extends React.Component<any, any> {
     super(props);
     this.state = {
       curid: '',
-      project: {},
+      project: {
+        functions: [],
+        introduction: [],
+        name: '',
+        pid: '',
+        skills: [],
+        time: []
+      }
     }
   }
 
@@ -46,7 +59,7 @@ const workDetails = class extends React.Component<any, any> {
         const item = companyLists[i].project
         for (const j in item) {
           if (item[j].pid === pid) {
-            const project: any = item[j]
+            const project: ProjectModel = item[j]
             project.timeStr = this.getTimes(item[j].time)
             this.setState({
               curid: pid,
@@ -78,13 +91,13 @@ const workDetails = class extends React.Component<any, any> {
         }
         <div className="skills">
           {
-            skills ? skills.map(({ label, type }: any, index: number) => (
+            skills ? skills.map(({ label, type }: SkillModel, index: number) => (
               <p key={index} style={type ? {} : { marginLeft: '-10px' }}>
                 {
                   type ? <span className="type">{type}:</span> : ''
                 }
                 {
-                  label ? label.map((item: string[], i: number) => (
+                  label ? label.map((item: string, i: number) => (
                     <span className="label" key={i}>{item}</span>
                   )) : ''
                 }
@@ -93,7 +106,9 @@ const workDetails = class extends React.Component<any, any> {
           }
         </div>
         {
-          projectLists[pid] ? <Carousel imglist={projectLists[pid].imglist} pid={pid} /> : ''
+          projectLists[pid]
+            ? <Carousel imglist={projectLists[pid].imglist} pid={pid} />
+            : ''
         }
         <div className="functions">
           <p>负责功能：</p>

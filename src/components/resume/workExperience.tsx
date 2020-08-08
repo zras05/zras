@@ -1,6 +1,8 @@
 import * as React from "react";
 import { withRouter } from 'react-router';
-import { companyLogos, workExperience } from 'src/assets/data/resume.js';
+import { companyLogos } from 'src/assets/data/companyLogos';
+import { WorkModel } from 'src/assets/data/models';
+import { workExperience } from 'src/assets/data/resume';
 import { timestampToDate } from 'src/assets/js/date';
 
 const experience = class extends React.Component<any, any> {
@@ -30,7 +32,7 @@ const experience = class extends React.Component<any, any> {
           </div>
         </div>
         {
-          workExperience.map(({ cid, describe, label, name, time, work }: any) => (
+          workExperience.map(({ cid, describe, label, company, time, work }: WorkModel) => (
             <div className="item" key={cid}>
               <div className="left">
                 <p className="time">
@@ -44,7 +46,7 @@ const experience = class extends React.Component<any, any> {
                 <p className="company">
                   <img className="company-logo" src={companyLogos[cid]} alt="logo" />
                   <span>
-                    <i className="name">{name}</i>
+                    <i className="name">{company}</i>
                     <i className="work">{work}</i>
                   </span>
                 </p>

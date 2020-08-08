@@ -2,7 +2,7 @@
 import { MailOutline, PhoneIphone, Room } from '@material-ui/icons';
 import * as React from "react";
 import { NavLink } from 'react-router-dom';
-import { resume } from 'src/assets/data/resume.js';
+import { resume } from 'src/assets/data/resume';
 import female from 'src/assets/images/female.svg';
 import 'src/assets/styles/resume.min.css';
 import { ResumeLogo } from 'src/components/resume/resumeLogo';

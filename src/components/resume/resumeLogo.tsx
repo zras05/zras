@@ -23,7 +23,6 @@ export const ResumeLogo = class extends React.Component<any, any> {
       {
         link ? (<NavLink className="logo-link" to={link} />) : ''
       }
-      
     </div>
     )
   }
