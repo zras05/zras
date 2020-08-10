@@ -2,4 +2,4 @@ node_modules
 yarn-error.log
 yarn.lock
 */.DS_Store
-src/assets/data/
+routes/mysqlConfig.js
