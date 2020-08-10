@@ -2,16 +2,33 @@ import * as React from "react";
 import { withRouter } from 'react-router';
 import { companyLogos } from 'src/assets/data/companyLogos';
 import { WorkModel } from 'src/assets/data/models';
-import { workExperience } from 'src/assets/data/resume';
+import { axiosRequest } from "src/assets/data/request";
 import { timestampToDate } from 'src/assets/js/date';
 
 const experience = class extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
+      workExperience: []
     }
   }
+  
+  public async componentDidMount() {
+    const obj = {
+      type: 'get',
+      url: '/api/resume/company',
+    }
+    const workExperience = await axiosRequest(obj)
+    if (workExperience) {
+      this.setState({ workExperience })
+    } else {
+      console.log('Request Error')
+    }
+  }
+
+
   public render() {
+    const {workExperience} = this.state
     return (
       <div className="work-experience">
         <div className="item">
@@ -32,7 +49,7 @@ const experience = class extends React.Component<any, any> {
           </div>
         </div>
         {
-          workExperience.map(({ cid, describe, label, company, time, work }: WorkModel) => (
+          workExperience.length ? workExperience.map(({ cid, describe, label, company, time, work }: WorkModel) => (
             <div className="item" key={cid}>
               <div className="left">
                 <p className="time">
@@ -65,6 +82,7 @@ const experience = class extends React.Component<any, any> {
               </div>
             </div>
           ))
+          : ''
         }
       </div>
     )

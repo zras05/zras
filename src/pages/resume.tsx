@@ -1,24 +1,48 @@
-
 import { MailOutline, PhoneIphone, Room } from '@material-ui/icons';
 import * as React from "react";
 import { NavLink } from 'react-router-dom';
-import { resume } from 'src/assets/data/resume';
+import { ResumeInfoModel } from "src/assets/data/models";
+import { axiosRequest } from "src/assets/data/request";
 import female from 'src/assets/images/female.svg';
 import 'src/assets/styles/resume.min.css';
 import { ResumeLogo } from 'src/components/resume/resumeLogo';
 
-export const Resume = class extends React.Component<any> {
+export const Resume = class extends React.Component<any, any & ResumeInfoModel> {
 
   constructor(props: any) {
     super(props);
     this.state = {
+      resume: {
+        address: "",
+        age: 0,
+        education: [],
+        email: "",
+        experience: 0,
+        name: "",
+        phone: "",
+        work: []
+      }
+    }
+  }
+
+  public async componentDidMount() {
+    const obj = {
+      type: 'get',
+      url: '/api/resume/info',
+    }
+    const resume = await axiosRequest(obj)
+    if (resume) {
+      this.setState({ resume })
+    } else {
+      console.log('Request Error')
     }
   }
 
   public render() {
-    const { address, age, education, email, experience, name, phone, work } = resume
-    const workStr = work.join(' / ')
-    const educationStr = education.join(' / ')
+    const { resume } = this.state
+    const { address, age, education, email, experience, name, phone, work }:ResumeInfoModel = resume
+    const workStr = work.length ? work.join(' / ') : ''
+    const educationStr = education.length ? education.join(' / ') : ''
     return (
       <div className="zras-resume resume-info">
         <ResumeLogo />

@@ -2,7 +2,8 @@ import * as React from "react";
 import { withRouter } from 'react-router';
 import { ProjectModel, SkillModel } from 'src/assets/data/models';
 import { projectLists } from 'src/assets/data/projects';
-import { companyLists } from 'src/assets/data/resume';
+import { axiosRequest } from "src/assets/data/request";
+// import { companyLists } from 'src/assets/data/resume';
 import { timestampToDate } from 'src/assets/js/date';
 import { Carousel } from "src/components/resume/carousel";
 
@@ -48,26 +49,22 @@ const workDetails = class extends React.Component<any, States> {
     this.getProject(pid)
   }
 
-  public componentDidUpdate(prevProps: any) {
+  public async componentDidUpdate(prevProps: any) {
     if (prevProps.match.params.id !== this.state.curid) {
-      this.getProject(this.state.curid)
+      await this.getProject(this.state.curid)
     }
   }
-  public getProject(pid: string) {
-    for (const i in companyLists) {
-      if (companyLists[i]) {
-        const item = companyLists[i].project
-        for (const j in item) {
-          if (item[j].pid === pid) {
-            const project: ProjectModel = item[j]
-            project.timeStr = this.getTimes(item[j].time)
-            this.setState({
-              curid: pid,
-              project
-            })
-          }
-        }
-      }
+  public async getProject(pid: string) {
+    const obj = {
+      type: 'get',
+      url: '/api/resume/project/' + pid,
+    }
+    const project = await axiosRequest(obj)
+    if (project) {
+      project.timeStr = this.getTimes(project.time)
+      this.setState({ curid: pid, project })
+    } else {
+      console.log('Request Error')
     }
   }
 
@@ -79,7 +76,7 @@ const workDetails = class extends React.Component<any, States> {
 
   public render() {
     const { project } = this.state
-    const { name, skills, link, functions, introduction, timeStr, pid } = project
+    const { name, skills, link, functions, introduction, timeStr, pid }: ProjectModel = project
     return (
       <div className="work-details">
         <p className="name">

@@ -3,10 +3,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import * as React from "react";
-// import { Route, Switch } from 'react-router';
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { companyLists } from 'src/assets/data/resume';
+import { axiosRequest } from "src/assets/data/request";
 import 'src/assets/styles/resume.min.css';
 import { ResumeLogo } from 'src/components/resume/resumeLogo';
 import { WorkDetails } from 'src/components/resume/workDetails';
@@ -21,7 +20,8 @@ class Collection extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      selectedIndex: ''
+      leftLists: [],
+      selectedIndex: '',
     }
   }
 
@@ -31,21 +31,28 @@ class Collection extends React.Component<any, any> {
     })
   }
 
+  public async componentDidMount() {
+    const obj = {
+      type: 'get',
+      url: '/api/resume/project',
+    }
+    const leftLists = await axiosRequest(obj)
+    if (leftLists) {
+      this.setState({ leftLists })
+    } else {
+      console.log('Request Error')
+    }
+  }
+
   public render() {
     const id = this.props.match.params.id
-    let leftLists: LeftListsModel[] = []
-    for (const i in companyLists) {
-      if (companyLists[i]) {
-        leftLists = [...leftLists, ...companyLists[i].project]
-      }
-    }
-    const { selectedIndex } = this.state
+    const { selectedIndex, leftLists } = this.state
     return (
       <div className="zras-resume resume-workCollection">
         <div className="resume-left">
           <List component="div" className="company-lists">
             {
-              leftLists.map(({ pid, name }: LeftListsModel) => (
+              leftLists.length ? leftLists.map(({ pid, name }: LeftListsModel) => (
                 <ListItem key={pid} className="item"
                   selected={selectedIndex === pid}
                   onClick={this.handleListItemClick.bind(this, pid)}
@@ -55,6 +62,7 @@ class Collection extends React.Component<any, any> {
                   </NavLink>
                 </ListItem>
               ))
+                : ''
             }
           </List>
           <p className="toResume">
