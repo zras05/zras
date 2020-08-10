@@ -9,6 +9,7 @@ import { Error } from "./pages/errorPage";
 import { Home } from "./pages/home";
 import { OCR } from "./pages/OCR";
 import { R } from "./pages/r";
+import { RequestTest } from "./pages/requestTest";
 import { Resume } from "./pages/resume";
 import { WorkCollection } from "./pages/workCollection";
 import { rootReducer } from "./store/core.reducers";
@@ -66,6 +67,7 @@ class App extends React.Component<any, AppState> {
             <Route exact={true} path={"/OCR"} component={OCR} />
             <Route exact={true} path={"/r"} component={R} />
             <Route exact={true} path={"/workCollection/:id?"} component={WorkCollection} />
+            <Route exact={true} path={"/requestTest"} component={RequestTest} />
             <Route path={"/*"} component={Error} />
           </Switch>
         </div>

@@ -35,6 +35,7 @@ $header-height: 52px;
   }
   .zras-language {
     @include flexbox;
+    align-items: baseline;
     li {
       margin: 0 10px;
       font-size: $fontSize-small;

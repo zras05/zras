@@ -76,6 +76,7 @@
   display: -ms-flexbox;
   /* IE 10 */
   display: flex;
+  align-items: baseline;
 }
 
 .zras-header .zras-language li {
