@@ -10,18 +10,13 @@ export const RequestTest = class extends React.Component<any> {
   }
 
   public getResumeInfo() {
-    // axios.get('api/resume/info')
-    //   .then((response) => {
-    //     console.log('response', response);
-    //   })
-    //   .catch((error) => {
-    //     console.log('error', error);
-    //   });
-
-    axios.get('/api')
+    axios.get('api/resume/info')
       .then((response) => {
         console.log('response', response);
       })
+      .catch((error) => {
+        console.log('error', error);
+      });
   }
 
   public render() {
