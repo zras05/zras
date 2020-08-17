@@ -1,3 +1,4 @@
+import { BrokenImage } from '@material-ui/icons';
 import * as React from "react";
 import { withRouter } from 'react-router';
 import { companyLogos } from 'src/assets/data/companyLogos';
@@ -12,7 +13,7 @@ const experience = class extends React.Component<any, any> {
       workExperience: []
     }
   }
-  
+
   public async componentDidMount() {
     const obj = {
       type: 'get',
@@ -28,7 +29,7 @@ const experience = class extends React.Component<any, any> {
 
 
   public render() {
-    const {workExperience} = this.state
+    const { workExperience } = this.state
     return (
       <div className="work-experience">
         <div className="item">
@@ -61,7 +62,11 @@ const experience = class extends React.Component<any, any> {
               </div>
               <div className="right">
                 <p className="company">
-                  <img className="company-logo" src={companyLogos[cid]} alt="logo" />
+                  {
+                   (companyLogos && companyLogos[cid])
+                      ? <img className="company-logo" src={companyLogos[cid]} alt="logo" />
+                      : <BrokenImage />
+                  }
                   <span>
                     <i className="name">{company}</i>
                     <i className="work">{work}</i>
@@ -82,7 +87,7 @@ const experience = class extends React.Component<any, any> {
               </div>
             </div>
           ))
-          : ''
+            : ''
         }
       </div>
     )
