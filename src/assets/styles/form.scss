@@ -1,17 +1,25 @@
+@import "./vars/_color.scss";
+@import "./vars/_font.scss";
+@import "./vars/_page.scss";
 @import "./vars/index.scss";
 
 $input-width: 240px;
+$label-width: 80px;
 
 .zras-form {
-  width: $input-width;
-  margin: 100px auto 0;
   .row {
-    width: $input-width;
     margin-bottom: $margin-base;
+    .label {
+      width: $label-width;
+      text-align: right;
+      margin-right: $margin-base;
+    }
+    .radio-group {
+      flex-direction: row;
+    }
     input,
     button {
       @include borderRadius;
-      width: $input-width;
       padding: 10px 20px;
       outline: none;
       border: none;
@@ -28,4 +36,44 @@ $input-width: 240px;
 .but-base {
   background: $color-base;
   color: $color-white;
+}
+
+.zras-login {
+  width: $input-width;
+  margin: 100px auto 0;
+  .row {
+    width: $input-width;
+    input,
+    button {
+      width: $input-width;
+    }
+  }
+}
+
+.zras-ocr {
+  width: $width-md;
+  margin: 50px auto 0;
+  .row {
+    @include flexbox;
+    flex-direction: row;
+    align-items: center;
+    .input-text {
+      width: 400px;
+    }
+    .input-file {}
+  }
+}
+
+.MuiRadio-root {
+  color: $color-black !important;
+}
+.MuiRadio-colorSecondary.Mui-checked {
+  color: $color-base !important;
+}
+.MuiFormControlLabel-label {
+  font-size: 14px !important;
+}
+.MuiFormLabel-root {
+  font-size: 14px !important;
+  color: $color-black !important;
 }

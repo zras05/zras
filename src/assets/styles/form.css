@@ -1,11 +1,15 @@
-.zras-form {
-  width: 240px;
-  margin: 100px auto 0;
+.zras-form .row {
+  margin-bottom: 30px;
 }
 
-.zras-form .row {
-  width: 240px;
-  margin-bottom: 30px;
+.zras-form .row .label {
+  width: 80px;
+  text-align: right;
+  margin-right: 30px;
+}
+
+.zras-form .row .radio-group {
+  flex-direction: row;
 }
 
 .zras-form .row input,
@@ -15,7 +19,6 @@
   -moz-border-radius: 10px;
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
-  width: 240px;
   padding: 10px 20px;
   outline: none;
   border: none;
@@ -31,4 +34,60 @@
 .but-base {
   background: #445793;
   color: #ffffff;
+}
+
+.zras-login {
+  width: 240px;
+  margin: 100px auto 0;
+}
+
+.zras-login .row {
+  width: 240px;
+}
+
+.zras-login .row input,
+.zras-login .row button {
+  width: 240px;
+}
+
+.zras-ocr {
+  width: 960px;
+  margin: 50px auto 0;
+}
+
+.zras-ocr .row {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.zras-ocr .row .input-text {
+  width: 400px;
+}
+
+.MuiRadio-root {
+  color: #333333 !important;
+}
+
+.MuiRadio-colorSecondary.Mui-checked {
+  color: #445793 !important;
+}
+
+.MuiFormControlLabel-label {
+  font-size: 14px !important;
+}
+
+.MuiFormLabel-root {
+  font-size: 14px !important;
+  color: #333333 !important;
 }
