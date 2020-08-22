@@ -5,7 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import * as React from "react";
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import { axiosRequest } from "src/assets/data/request";
+import { axiosRequest } from "src/assets/js/request";
 import 'src/assets/styles/resume.min.css';
 import { ResumeLogo } from 'src/components/resume/resumeLogo';
 import { WorkDetails } from 'src/components/resume/workDetails';

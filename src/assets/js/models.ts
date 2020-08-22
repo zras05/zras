@@ -3,3 +3,9 @@ export interface DateWithPrecision {
   precision?: number
   language?: number
 }
+
+export interface RequestModel {
+  type: string
+  url: string
+  params?: any
+}

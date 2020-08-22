@@ -1,11 +1,12 @@
 import { MailOutline, PhoneIphone, Room } from '@material-ui/icons';
 import * as React from "react";
 import { NavLink } from 'react-router-dom';
-import { ResumeInfoModel } from "src/assets/data/models";
-import { axiosRequest } from "src/assets/data/request";
 import female from 'src/assets/images/female.svg';
-import 'src/assets/styles/resume.min.css';
+import { axiosRequest } from "src/assets/js/request";
+import { ResumeInfoModel } from "src/assets/js/resume";
 import { ResumeLogo } from 'src/components/resume/resumeLogo';
+
+import 'src/assets/styles/resume.min.css';
 
 export const Resume = class extends React.Component<any, any & ResumeInfoModel> {
 

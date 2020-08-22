@@ -1,10 +1,9 @@
 import { BrokenImage } from '@material-ui/icons';
 import * as React from "react";
 import { withRouter } from 'react-router';
-import { companyLogos } from 'src/assets/data/companyLogos';
-import { WorkModel } from 'src/assets/data/models';
-import { axiosRequest } from "src/assets/data/request";
 import { timestampToDate } from 'src/assets/js/date';
+import { axiosRequest } from "src/assets/js/request";
+import { companyLogos, WorkModel } from 'src/assets/js/resume';
 
 const experience = class extends React.Component<any, any> {
   constructor(props: any) {

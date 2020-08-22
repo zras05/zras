@@ -1,10 +1,8 @@
 import * as React from "react";
 import { withRouter } from 'react-router';
-import { ProjectModel, SkillModel } from 'src/assets/data/models';
-import { projectLists } from 'src/assets/data/projects';
-import { axiosRequest } from "src/assets/data/request";
-// import { companyLists } from 'src/assets/data/resume';
 import { timestampToDate } from 'src/assets/js/date';
+import { axiosRequest } from "src/assets/js/request";
+import { projectLists, ProjectModel, SkillModel } from 'src/assets/js/resume';
 import { Carousel } from "src/components/resume/carousel";
 
 interface States {
