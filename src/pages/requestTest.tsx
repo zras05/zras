@@ -1,5 +1,8 @@
-import axios from 'axios';
+// import axios from 'axios';
 import * as React from "react";
+
+import { axiosRequest } from "src/assets/js/request";
+
 
 export const RequestTest = class extends React.Component<any> {
 
@@ -8,19 +11,21 @@ export const RequestTest = class extends React.Component<any> {
     this.state = {
     }
   }
+  public async componentDidMount() {
+    console.log('componentDidMount')
+  }
 
-  public getResumeInfo() {
-    axios.get('api/resume/info')
-      .then((response) => {
-        console.log('response', response);
-      })
-      .catch((error) => {
-        console.log('error', error);
-      });
+  public async getAxiosData() {
+    const obj = {
+      type: 'get',
+      url: '/api/resume/info',
+    }
+    const resume = await axiosRequest(obj)
+    console.log('resume', resume)
   }
 
   public render() {
-    this.getResumeInfo()
+    // this.getAxiosData()
     return (
       <div className="zras-page">RequestTest</div>
     )

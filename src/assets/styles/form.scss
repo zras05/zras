@@ -50,20 +50,6 @@ $label-width: 80px;
   }
 }
 
-.zras-ocr {
-  width: $width-md;
-  margin: 50px auto 0;
-  .row {
-    @include flexbox;
-    flex-direction: row;
-    align-items: center;
-    .input-text {
-      width: 400px;
-    }
-    .input-file {}
-  }
-}
-
 .MuiRadio-root {
   color: $color-black !important;
 }

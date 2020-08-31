@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {RequestModel } from './models';
+import { RequestModel } from './models';
 
 export const axiosRequest = async ({ type, url, params }: RequestModel) => {
   let req = null
@@ -8,7 +8,7 @@ export const axiosRequest = async ({ type, url, params }: RequestModel) => {
       req = axios.get(url)
       break
     case 'post':
-      req = axios.post(url, params ? params : {})
+      req = axios.post(url, { data: (params ? params : {}) })
       break
     default:
       req = axios.get(url)

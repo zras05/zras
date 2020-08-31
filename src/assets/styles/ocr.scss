@@ -1,0 +1,52 @@
+@import "./vars/_color.scss";
+@import "./vars/index.scss";
+
+.zras-ocr {
+  padding: 50px 0;
+  .row {
+    @include flexbox;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    p {
+      width: 100%;
+      flex: 1 0 auto;
+      padding-left: 110px;
+    }
+    .input-text {
+      width: 400px;
+    }
+    .commit {
+      margin-left: 80px;
+    }
+  }
+  .ocr-result {
+    @include flexbox;
+    flex-wrap: wrap;
+    .origin-img {
+      position: relative;
+      @include flexbox;
+      width: 100%;
+      flex: 1 0 auto;
+      justify-content: center;
+    }
+    .ocr-word {
+      border-right: 1px solid $color-base;
+    }
+    .trans-word {
+      border-left: 1px solid $color-base;
+    }
+    .ocr-word,
+    .trans-word {
+      width: calc(50% - 30px);
+      flex: 1 0 auto;
+      position: relative;
+      padding: 20px;
+      margin-right: 20px;
+
+      .word-title {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}

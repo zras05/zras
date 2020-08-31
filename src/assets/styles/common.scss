@@ -17,8 +17,8 @@ $header-height: 52px;
   .zras-logo {
     height: 36px;
   }
-  .zras-nav { 
-    @include flexbox; 
+  .zras-nav {
+    @include flexbox;
     li {
       margin: 0 $margin-small;
       a {
@@ -46,14 +46,14 @@ $header-height: 52px;
     }
   }
   .logout {
-    border-left:$color-base solid 1px;
+    border-left: $color-base solid 1px;
     padding-left: $margin-small;
     &:hover {
       color: $color-base;
     }
   }
 }
- 
+
 .zras-noHeader {
   position: fixed;
   top: 10px;
@@ -62,4 +62,12 @@ $header-height: 52px;
   a {
     color: $color-base;
   }
+}
+
+.zras-imageWrap {
+  @include flexbox;
+  width: 1000px;
+  height: 618px;
+  justify-content: center;
+  align-items: center;
 }

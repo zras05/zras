@@ -5,9 +5,18 @@ module.exports = function (app) {
     {
       changeOrigin: true,
       pathRewrite: {
-        '^/api': '/'
+        '^/api': '/',
       },
       target: "http://192.168.0.106:1006"
     }
-  ))
+  )) 
+  app.use(createProxyMiddleware('/baidu',
+  {
+    changeOrigin: true,
+    pathRewrite: {
+      '^/baidu': '',
+    },
+    target: "http://api.fanyi.baidu.com/api/trans/vip/translate"
+  }
+))
 } 
