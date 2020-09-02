@@ -1,6 +1,7 @@
 /* GET resume page. */
 
 const express = require('express');
+
 const router = express.Router();
 
 const baiduOCR = require('../ocr/src/index.js');
@@ -13,10 +14,10 @@ const baiduAIConfig = require('./config/baidu.js');
 const { APP_ID, API_KEY, SECRET_KEY, appid, key } = baiduAIConfig
 const client = new ocr(APP_ID, API_KEY, SECRET_KEY);
 const options = {};
-options["probability"] = "true";
-options['paragraph'] = "true";
-options['vertexes_location'] = "true";
-options['recognize_granularity'] = "small";
+options['probability'] = 'true';
+options['paragraph'] = 'true';
+options['vertexes_location'] = 'true';
+options['recognize_granularity'] = 'small';
 
 const getTransArray = async (ocrArray, lang) => {
   if (!ocrArray) {
@@ -66,8 +67,7 @@ const getOcrWithLocation = (result) => {
 }
 
 router.post('/', function (req, res, next) {
-  // const image = fs.readFileSync('asset/testimg.jpg').toString("base64");
-  const data = req.body.data;
+  const data = req.body;
   options['language_type'] = data.ocrlang;
   options['image'] = data.image;
   const image = data.image;
@@ -88,6 +88,7 @@ router.post('/', function (req, res, next) {
 })
 
 router.post('/location', function (req, res, next) {
+  // const image = fs.readFileSync('asset/testimg.jpg').toString('base64');
   options['language_type'] = req.body.lang;
   client.general(req.body.image, options).then(function (result) { // 含位置 500次
     const ocrResult = getOcrWithLocation(result)
