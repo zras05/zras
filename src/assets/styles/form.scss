@@ -4,15 +4,16 @@
 @import "./vars/index.scss";
 
 $input-width: 240px;
-$label-width: 80px;
+$label-width: 140px;
 
 .zras-form {
   .row {
-    margin-bottom: $margin-base;
     .label {
       width: $label-width;
-      text-align: right;
       margin-right: $margin-base;
+      @media (min-width: $width-sm) {
+        text-align: right;
+      }
     }
     .radio-group {
       flex-direction: row;
@@ -23,12 +24,12 @@ $label-width: 80px;
       padding: 10px 20px;
       outline: none;
       border: none;
+      cursor: pointer;
     }
   }
   .alert-error {
     min-height: 20px;
     color: $color-red;
-    margin-bottom: 10px;
     font-size: 13px;
   }
 }
@@ -41,8 +42,13 @@ $label-width: 80px;
 .zras-login {
   width: $input-width;
   margin: 100px auto 0;
+  .alert-error {
+    margin-bottom: 10px;
+    padding: 0 $margin-base;
+  }
   .row {
     width: $input-width;
+    margin-bottom: $margin-base;
     input,
     button {
       width: $input-width;

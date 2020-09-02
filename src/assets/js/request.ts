@@ -1,4 +1,6 @@
 import axios from 'axios';
+const qs = require('qs');
+
 import { RequestModel } from './models';
 
 export const axiosRequest = async ({ type, url, params }: RequestModel) => {
@@ -8,7 +10,14 @@ export const axiosRequest = async ({ type, url, params }: RequestModel) => {
       req = axios.get(url)
       break
     case 'post':
-      req = axios.post(url, { data: (params ? params : {}) })
+      req = axios({
+        data: params ? qs.stringify(params) : {},
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        method: 'post',
+        url,
+      })
       break
     default:
       req = axios.get(url)

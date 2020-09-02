@@ -1,49 +1,137 @@
 @import "./vars/_color.scss";
+@import "./vars/_page.scss";
 @import "./vars/index.scss";
+
+$input-width: 100px;
 
 .zras-ocr {
   padding: 50px 0;
-  .row {
-    @include flexbox;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-    p {
-      width: 100%;
-      flex: 1 0 auto;
-      padding-left: 110px;
-    }
-    .input-text {
-      width: 400px;
-    }
-    .commit {
-      margin-left: 80px;
-    }
-  }
+  .ocr-condition,
   .ocr-result {
     @include flexbox;
-    flex-wrap: wrap;
-    .origin-img {
-      position: relative;
+    @include borderRadius;
+    justify-content: space-between;
+    @media (max-width: $width-sm) {
+      flex-direction: column;
+    }
+  }
+  .ocr-condition {
+    background: $color-white;
+    padding: $margin-base;
+    .zras-form {
+      width: 800px;
+      @media (max-width: $width-sm) {
+        width: 100%;
+      }
+      .row {
+        @include flexbox;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: {
+          left: $margin-base;
+          right: $margin-base;
+        }
+        .input-text {
+          width: 400px;
+        }
+        .input-file {
+          position: absolute;
+          left: 200px;
+          width: $input-width;
+          opacity: 0;
+          @media (max-width: $width-sm) {
+            top: 10px;
+            left: 0;
+          }
+        }
+        .select {
+          width: $input-width;
+          margin-right: $margin-base;
+        }
+        .clear {
+          width: 24px;
+          height: 24px;
+          padding: 0;
+          margin-left: $margin-base;
+          @include borderRadius(18px);
+        }
+      }
+      .input-wrap {
+        margin-bottom: $margin-base;
+        p {
+          @include flexbox;
+          align-items: center;
+          position: relative;
+          @media (max-width: $width-sm) {
+            flex-wrap: wrap;
+          }
+          button {
+            @media (max-width: $width-sm) {
+              margin: {
+                bottom: 10px;
+                top: 10px;
+              }
+            }
+          }
+          .condition {
+            font-size: 13px;
+            @media (max-width: $width-sm) {
+              width: 100%;
+              flex: 1 0 auto;
+            }
+          }
+        }
+      }
+      .button-wrap {
+        margin-bottom: 0;
+        @media (max-width: $width-sm) {
+          flex-direction: column;
+        }
+        .commit {
+          width: $input-width;
+          cursor: not-allowed;
+        }
+        .but-base {
+          cursor: pointer;
+        }
+      }
+      .error-wrap {
+        @media (max-width: $width-sm) {
+          flex-direction: column;
+        }
+        margin-bottom: 0;
+        height: 30px;
+      }
+    }
+    .ocr-image {
       @include flexbox;
-      width: 100%;
+      width: 520px;
+      @media (max-width: $width-sm) {
+        width: 100%;
+        margin-top: $margin-base;
+      }
+      position: relative;
       flex: 1 0 auto;
       justify-content: center;
     }
+  }
+  .ocr-result {
+    margin-top: $margin-base;
     .ocr-word {
-      border-right: 1px solid $color-base;
-    }
-    .trans-word {
-      border-left: 1px solid $color-base;
+      @media (max-width: $width-sm) {
+        margin-bottom: $margin-base;
+      }
     }
     .ocr-word,
     .trans-word {
-      width: calc(50% - 30px);
-      flex: 1 0 auto;
-      position: relative;
+      @include borderRadius;
+      width: calc(50% - 15px);
+      @media (max-width: $width-sm) {
+        width: 100%;
+      }
+      background: $color-white;
       padding: 20px;
-      margin-right: 20px;
-
       .word-title {
         margin-bottom: 20px;
       }

@@ -66,8 +66,11 @@ $header-height: 52px;
 
 .zras-imageWrap {
   @include flexbox;
-  width: 1000px;
-  height: 618px;
+  @include borderRadius;
+  width: 100%;
+  // width: 1000px;
+  // height: 618px;
+  background: $color-bg;
   justify-content: center;
   align-items: center;
 }

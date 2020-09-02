@@ -1,11 +1,12 @@
-.zras-form .row {
-  margin-bottom: 30px;
+.zras-form .row .label {
+  width: 140px;
+  margin-right: 30px;
 }
 
-.zras-form .row .label {
-  width: 80px;
-  text-align: right;
-  margin-right: 30px;
+@media (min-width: 768px) {
+  .zras-form .row .label {
+    text-align: right;
+  }
 }
 
 .zras-form .row .radio-group {
@@ -22,12 +23,12 @@
   padding: 10px 20px;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 
 .zras-form .alert-error {
   min-height: 20px;
   color: #ee5335;
-  margin-bottom: 10px;
   font-size: 13px;
 }
 
@@ -41,8 +42,14 @@
   margin: 100px auto 0;
 }
 
+.zras-login .alert-error {
+  margin-bottom: 10px;
+  padding: 0 30px;
+}
+
 .zras-login .row {
   width: 240px;
+  margin-bottom: 30px;
 }
 
 .zras-login .row input,
