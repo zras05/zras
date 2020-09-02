@@ -3,45 +3,107 @@
 const express = require('express');
 const router = express.Router();
 
-const baiduAI = require('../ocr/src/index.js');
-const { ocr } = baiduAI;
+const baiduOCR = require('../ocr/src/index.js');
+const { ocr } = baiduOCR;
 const fs = require('fs');
-const http = require('http');
+const md5 = require('md5');
+const axios = require('axios');
 
-const baiduAIConfig = require('./baiduAIConfig.js');
-const { APP_ID, API_KEY, SECRET_KEY } = baiduAIConfig
-
+const baiduAIConfig = require('./config/baidu.js');
+const { APP_ID, API_KEY, SECRET_KEY, appid, key } = baiduAIConfig
 const client = new ocr(APP_ID, API_KEY, SECRET_KEY);
-const testurl3 = 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1597596745650&di=cb5bcd3dcc2bd035cf60d93f431432c0&imgtype=0&src=http%3A%2F%2Fimage.game.uc.cn%2F2015%2F12%2F8%2F11576324.jpg'
-
 const options = {};
-options["detect_direction"] = "true";
 options["probability"] = "true";
-options['language_type'] = 'JAP';
+options['paragraph'] = "true";
+options['vertexes_location'] = "true";
+options['recognize_granularity'] = "small";
 
-const image = fs.readFileSync('asset/testimg.jpg').toString("base64");
+const getTransArray = async (ocrArray, lang) => {
+  if (!ocrArray) {
+    return false
+  }
+  const salt = new Date().getTime();
+  const q = ocrArray.join('\n'); // 多个query可以 \n 连接 
+  const params = {
+    appid,  salt, q, to: 'zh',
+    from: lang ? lang : 'auto',
+    sign: md5(appid + q + salt + key), // appid+q+salt+密钥 的MD5值
+  }
+  const transResult = await axios({
+    method: 'get',
+    url: 'https://fanyi-api.baidu.com/api/trans/vip/translate',
+    params
+  }).then(({data}) => data)
+  return transResult
+}
 
- router.get('/image', function (req, res, next) {
-  client.generalBasic(image, options).then(function (result) {
+const getOcrArray = (result) => {
+  if (!result) {
+    return false
+  }
+  const words_result = result.words_result
+  const ocrResult = []
+  for (const i in words_result) {
+    if (words_result[i]) {
+      ocrResult.push(words_result[i].words)
+    }
+  }
+  return ocrResult
+}
+
+const getOcrWithLocation = (result) => {
+  if (!result){
+    return false
+  }
+  const words_result = result.words_result
+  let ocrResult = []
+  for (const i in words_result) {
+    if (words_result[i]) {
+      ocrResult = [...ocrResult, ...words_result[i].chars]
+    }
+  }
+  return ocrResult
+}
+
+router.post('/', function (req, res, next) {
+  // const image = fs.readFileSync('asset/testimg.jpg').toString("base64");
+  const data = req.body.data;
+  options['language_type'] = data.ocrlang;
+  options['image'] = data.image;
+  const image = data.image;
+  client.generalBasicUrl(image, options).then(async (result) => { // 不含位置 5000次
+    const transResult = await getTransArray(getOcrArray(result), data.translang)
     return res.json({
       code: 0,
       message: 'OK',
-      data: result
+      data: transResult
     })
   }).catch(function (err) {
-    console.log(err);
+    return res.json({
+      code: 1,
+      message: 'Error',
+      data: err
+    })
   });
 })
 
-router.get('/url', function (req, res, next) {
-  client.generalBasicUrl(testurl3, options).then(function (result) {
+router.post('/location', function (req, res, next) {
+  options['language_type'] = req.body.lang;
+  client.general(req.body.image, options).then(function (result) { // 含位置 500次
+    const ocrResult = getOcrWithLocation(result)
     return res.json({
       code: 0,
       message: 'OK',
-      data: result
+      data: {
+        ocrResult
+      }
     })
   }).catch(function (err) {
-    console.log(err);
+    return res.json({
+      code: 1,
+      message: 'Error',
+      data: err
+    })
   });
 })
 

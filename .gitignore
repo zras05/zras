@@ -2,5 +2,4 @@ node_modules
 yarn-error.log
 yarn.lock
 */.DS_Store
-routes/mysqlConfig.js
-routes/baiduAIConfig.js
+routes/config
