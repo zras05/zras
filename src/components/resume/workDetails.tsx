@@ -100,11 +100,11 @@ const workDetails = class extends React.Component<any, States> {
             )) : ''
           }
         </div>
-        {
+        <div className="carousel">{
           projectLists[pid]
             ? <Carousel imglist={projectLists[pid].imglist} pid={pid} />
             : ''
-        }
+        }</div>
         <div className="functions">
           <p>负责功能：</p>
           {

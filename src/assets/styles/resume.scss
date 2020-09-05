@@ -1,27 +1,35 @@
 @import "./vars/_color.scss";
 @import "./vars/_font.scss";
+@import "./vars/_page.scss";
 @import "./vars/index.scss";
 
 @mixin label {
   color: $color-base;
   border: 1px solid $color-base;
-  padding: 6px 10px;
   border-radius: 40px;
-  margin: 10px;
+  word-break: break-all;
+  @media (min-width: $width-sm) {
+    margin: 10px;
+    padding: 6px 10px;
+  }
+  @media (max-width: $width-sm) {
+    margin: 5px;
+    font-size: 12px;
+    padding: 4px 7px;
+    display: inline-block;
+  }
 }
+
 .zras-resume {
-  height: 100vh;
-  overflow: hidden;
   @include flexbox;
   position: relative;
   justify-content: space-between;
-  min-width: 1200px;
   .resume-logo {
+    @include flexbox;
     width: 150px;
     height: 150px;
     overflow: hidden;
     background: transparent;
-    @include flexbox;
     justify-content: center;
     align-items: center;
     .logo-border {
@@ -92,17 +100,32 @@
 }
 
 .resume-info {
+  @media (max-width: $width-sm) {
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0;
+  }
   .resume-logo {
-    position: absolute;
-    left: calc(50vw - 75px);
-    animation: 1s linear 1s reverse both logoWrapTopAnimation;
+    @media (min-width: $width-sm) {
+      position: absolute;
+      left: calc(50vw - 75px);
+      animation: 1s linear 1s reverse both logoWrapTopAnimation;
+    }
+    @media (max-width: $width-sm) {
+    }
   }
   .resume-cont {
-    position: absolute;
-    width: 100%;
-    left: 0;
-    height: calc(90vh - 200px);
-    animation: 2s linear 0.1s reverse both resumeTopAnimation;
+    @media (min-width: $width-sm) {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      height: calc(90vh - 400px);
+      overflow: hidden;
+      animation: 2s linear 0.1s reverse both resumeTopAnimation;
+    }
+    @media (max-width: $width-sm) {
+      margin-top: 60px;
+    }
     p {
       text-align: center;
       line-height: 36px;
@@ -146,22 +169,48 @@
 }
 
 .resume-workCollection {
-  min-height: 900px;
+  position: relative;
+  @media (min-width: $width-sm) {
+    min-height: 900px;
+  }
   .resume-logo {
-    animation: 1s linear 1s reverse both logoWrapLeftAnimation;
-    position: absolute;
-    top: 10vh;
+    @media (max-width: $width-sm) {
+      display: none;
+    }
+    @media (min-width: $width-sm) {
+      position: absolute;
+      animation: 1s linear 1s reverse both logoWrapLeftAnimation;
+      top: 10vh;
+    }
   }
   .resume-left {
     @include flexbox;
-    min-height: 900px;
     flex-direction: column;
-    justify-content: space-between;
-    padding-top: 275px;
     width: 240px;
     background: $color-base;
     height: 100vh;
-    animation: 2s linear 0.1s reverse both resumeShowAnimation;
+    @media (min-width: $width-sm) {
+      animation: 2s linear 0.1s reverse both resumeShowAnimation;
+      padding-top: 275px;
+      min-height: 900px;
+      justify-content: space-between;
+    }
+    @media (max-width: $width-sm) {
+      position: absolute;
+      top: 0;
+      padding-top: 40px;
+      transition: 1s;
+      z-index: 2;
+    }
+    .left-menu {
+      align-self: flex-end;
+      position: absolute;
+      top: 10px;
+      animation: 1s all;
+      @media (min-width: $width-sm) {
+        display: none;
+      }
+    }
     .company-lists {
       flex-direction: column;
       .item {
@@ -185,6 +234,14 @@
       margin-bottom: 40px;
       font-size: 15px;
       text-align: center;
+      @media (max-width: $width-sm) {
+        align-self: flex-end;
+        margin: {
+          right: 20px;
+          bottom: 20px;
+          top: auto;
+        }
+      }
       a {
         padding: 0 2px 5px;
         color: $color-base;
@@ -195,18 +252,73 @@
   }
   .resume-right {
     @include flexbox;
-    width: calc(100vw - 240px);
-    height: 100vh;
-    animation: 2s linear 0.1s reverse both resumeShowAnimation;
     padding-top: 100px;
-    flex-direction: column;
+    @media (min-width: $width-sm) {
+      width: calc(100vw - 240px);
+      overflow: auto;
+      animation: 2s linear 0.1s reverse both resumeShowAnimation;
+      flex-direction: column;
+    }
   }
 }
 
 .work-experience {
+  height: calc(100vh - 100px);
+  @media (max-width: $width-sm) {
+    width: 100vw;
+    overflow: hidden;
+  }
+  .company-wrap {
+    .company {
+      @include flexbox;
+      img {
+        width: 45px;
+        border-radius: 8px;
+        margin-right: 10px;
+      }
+      span {
+        @include flexbox;
+        flex-direction: column;
+        .name {
+          font-style: normal;
+          font-size: 16px;
+          @include fontFamily-Semibold;
+          @media (max-width: $width-sm) {
+            font-size: 14px;
+          }
+        }
+        .work {
+          margin-top: 5px;
+          font-style: normal;
+          @media (max-width: $width-sm) {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .title {
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    .describe {
+      p {
+        margin: 10px;
+      }
+    }
+    .label {
+      @include flexbox;
+      flex-wrap: wrap;
+      span {
+        @include label;
+      }
+    }
+  }
   .item {
     @include flexbox;
     justify-content: center;
+    @media (max-width: $width-sm) {
+      display: none;
+    }
     .left {
       padding-right: 20px;
       padding-top: 10px;
@@ -246,58 +358,68 @@
       flex: 0 0 auto;
       padding-bottom: 50px;
       padding-left: 20px;
-      .company {
+    }
+  }
+  .mobile-item {
+    width: 100vw;
+    @media (min-width: $width-sm) {
+      display: none;
+    }
+    .drap-wrap {
+      @include flexbox;
+      position: relative;
+      height: calc(100vh - 240px);
+      .card-wrap {
         @include flexbox;
-        img {
-          width: 45px;
-          border-radius: 8px;
-          margin-right: 10px;
-        }
-        span {
-          @include flexbox;
-          flex-direction: column;
-          .name {
-            font-style: normal;
-            font-size: 16px;
-            @include fontFamily-Semibold;
-          }
-          .work {
-            margin-top: 5px;
-            font-style: normal;
-          }
+        position: absolute;
+        top: 0;
+        justify-content: center;
+        .card {
+          @include borderRadius;
+          background: #fff;
+          flex: 1 0 auto;
+          width: calc(100vw - 120px);
+          margin: 0 20px;
+          padding: 20px;
         }
       }
-      .label,
-      .describe {
-        margin-top: 20px;
-      }
-      .describe {
-        p {
-          margin: 10px;
-        }
-      }
-      .label {
-        span {
-          @include label;
-        }
-      }
+    }
+    .time-wrap {
+      @include flexbox;
+      justify-content: center;
+      color: $color-base;
+      margin: $margin-base 0;
     }
   }
 }
 
 .work-details {
-  width: 800px;
-  margin: 0 auto;
+  @media (min-width: $width-sm) {
+    margin: 0 auto;
+    width: 800px;
+  }
+  @media (max-width: $width-sm) {
+    width: calc(100vw - 40px);
+    margin: 0 20px 20px;
+  }
   .name {
     @include flexbox;
     font-size: 20px;
     @include fontFamily-Semibold;
     align-items: baseline;
     margin-bottom: 5px;
+    @media (max-width: $width-sm) {
+      flex-direction: column;
+    }
     .time {
-      margin-left: 10px;
       font-size: 14px;
       font-family: $fontFamily-regular;
+      @media (min-width: $width-sm) {
+        margin-left: 10px;
+      }
+      @media (max-width: $width-sm) {
+        margin-top: 5px;
+      }
     }
   }
   .link {
@@ -309,12 +431,23 @@
     }
   }
   .skills {
-    margin: {
-      top: 10px;
-      bottom: 10px;
+    @media (min-width: $width-sm) {
+      margin: {
+        top: 10px;
+        bottom: 10px;
+      }
+    }
+    @media (max-width: $width-sm) {
+      @include flexbox;
+      flex-wrap: wrap;
     }
     p {
-      padding: 10px 0;
+      @media (min-width: $width-sm) {
+        padding: 10px 0;
+      }
+      @media (max-width: $width-sm) {
+        padding: 5px 0;
+      }
       .type {
         margin-right: 10px;
       }
@@ -323,7 +456,13 @@
       }
     }
   }
-  .functions, .introduction {
+  .carousel {
+    @media (max-width: $width-sm) {
+      display: none;
+    }
+  }
+  .functions,
+  .introduction {
     p {
       line-height: 2;
     }

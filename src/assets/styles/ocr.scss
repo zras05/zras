@@ -37,7 +37,7 @@ $input-width: 100px;
         }
         .input-file {
           position: absolute;
-          left: 200px;
+          left: 0;
           width: $input-width;
           opacity: 0;
           @media (max-width: $width-sm) {

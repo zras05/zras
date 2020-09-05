@@ -56,11 +56,49 @@ $header-height: 52px;
 
 .zras-noHeader {
   position: fixed;
-  top: 10px;
-  right: 10px;
   z-index: 9;
-  a {
+  height: 40px;
+  width: 100px;
+  top: 0;
+  right: 0;
+  .base,
+  .top,
+  .link {
+    position: absolute;
+    @media (max-width: $width-sm) {
+      width: 40px;
+      height: 40px;
+      right: 0;
+      top: 0;
+    }
+  }
+  .top,
+  .base {
+    @media (min-width: $width-sm) {
+      opacity: 0;
+    }
+    @include flexbox;
+    align-items: center;
+    justify-content: center;
+  }
+  .base {
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
     color: $color-base;
+  }
+  .top {
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    background:$color-base;
+    color: $color-white;
+  }
+  .link {
+    @media (max-width: $width-sm) {
+      opacity: 0;
+    }
+    @media (min-width: $width-sm) {
+      top: 10px;
+      right: 20px;
+      color: $color-base;
+    }
   }
 }
 
@@ -68,9 +106,12 @@ $header-height: 52px;
   @include flexbox;
   @include borderRadius;
   width: 100%;
-  // width: 1000px;
-  // height: 618px;
   background: $color-bg;
   justify-content: center;
   align-items: center;
+  .broken {
+    width: 60px;
+    height: 60px;
+    color: $color-base;
+  }
 }

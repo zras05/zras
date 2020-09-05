@@ -70,7 +70,7 @@
 
 .zras-ocr .ocr-condition .zras-form .row .input-file {
   position: absolute;
-  left: 200px;
+  left: 0;
   width: 100px;
   opacity: 0;
 }

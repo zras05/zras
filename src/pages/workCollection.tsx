@@ -1,7 +1,6 @@
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { List, ListItem, ListItemText } from '@material-ui/core';
+import FormatListBulleted from '@material-ui/icons/FormatListBulleted';
 import * as React from "react";
 import { withRouter } from 'react-router';
 import { NavLink } from 'react-router-dom';
@@ -15,11 +14,27 @@ interface LeftListsModel {
   pid: string
   name: string
 }
+
+const showClass = {
+  left: 0
+}
+const hideClass = {
+  left: '-240px'
+}
+const showBtnClass = {
+  color: '#fff',
+  right: '20px'
+}
+const hideBtnClass = {
+  color: '#445793',
+  right: '-40px'
+}
 class Collection extends React.Component<any, any> {
 
   constructor(props: any) {
     super(props);
     this.state = {
+      isToggle: false,
       leftLists: [],
       selectedIndex: '',
     }
@@ -27,7 +42,15 @@ class Collection extends React.Component<any, any> {
 
   public handleListItemClick(id: string, e: any) {
     this.setState({
-      selectedIndex: id
+      isToggle: false,
+      selectedIndex: id,
+    })
+  }
+
+  public toggle = () => {
+    const { isToggle } = this.state
+    this.setState({
+      isToggle: !isToggle
     })
   }
 
@@ -46,10 +69,16 @@ class Collection extends React.Component<any, any> {
 
   public render() {
     const id = this.props.match.params.id
-    const { selectedIndex, leftLists } = this.state
+    const { selectedIndex, leftLists, isToggle } = this.state
     return (
       <div className="zras-resume resume-workCollection">
-        <div className="resume-left">
+        <div className="resume-left"
+          style={isToggle ? showClass : hideClass}
+        >
+          <FormatListBulleted className="left-menu"
+            onClick={this.toggle}
+            style={isToggle ? showBtnClass : hideBtnClass}
+          />
           <List component="div" className="company-lists">
             {
               leftLists.length ? leftLists.map(({ pid, name }: LeftListsModel) => (

@@ -1,6 +1,4 @@
 .zras-resume {
-  height: 100vh;
-  overflow: hidden;
   display: -webkit-box;
   /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
   display: -moz-box;
@@ -14,14 +12,9 @@
   display: flex;
   position: relative;
   justify-content: space-between;
-  min-width: 1200px;
 }
 
 .zras-resume .resume-logo {
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  background: transparent;
   display: -webkit-box;
   /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
   display: -moz-box;
@@ -33,6 +26,10 @@
   display: -ms-flexbox;
   /* IE 10 */
   display: flex;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  background: transparent;
   justify-content: center;
   align-items: center;
 }
@@ -122,18 +119,37 @@
   position: absolute;
 }
 
-.resume-info .resume-logo {
-  position: absolute;
-  left: calc(50vw - 75px);
-  animation: 1s linear 1s reverse both logoWrapTopAnimation;
+@media (max-width: 768px) {
+  .resume-info {
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0;
+  }
 }
 
-.resume-info .resume-cont {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  height: calc(90vh - 200px);
-  animation: 2s linear 0.1s reverse both resumeTopAnimation;
+@media (min-width: 768px) {
+  .resume-info .resume-logo {
+    position: absolute;
+    left: calc(50vw - 75px);
+    animation: 1s linear 1s reverse both logoWrapTopAnimation;
+  }
+}
+
+@media (min-width: 768px) {
+  .resume-info .resume-cont {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: calc(90vh - 400px);
+    overflow: hidden;
+    animation: 2s linear 0.1s reverse both resumeTopAnimation;
+  }
+}
+
+@media (max-width: 768px) {
+  .resume-info .resume-cont {
+    margin-top: 60px;
+  }
 }
 
 .resume-info .resume-cont p {
@@ -185,13 +201,27 @@
 }
 
 .resume-workCollection {
-  min-height: 900px;
+  position: relative;
 }
 
-.resume-workCollection .resume-logo {
-  animation: 1s linear 1s reverse both logoWrapLeftAnimation;
-  position: absolute;
-  top: 10vh;
+@media (min-width: 768px) {
+  .resume-workCollection {
+    min-height: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  .resume-workCollection .resume-logo {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .resume-workCollection .resume-logo {
+    position: absolute;
+    animation: 1s linear 1s reverse both logoWrapLeftAnimation;
+    top: 10vh;
+  }
 }
 
 .resume-workCollection .resume-left {
@@ -206,14 +236,42 @@
   display: -ms-flexbox;
   /* IE 10 */
   display: flex;
-  min-height: 900px;
   flex-direction: column;
-  justify-content: space-between;
-  padding-top: 275px;
   width: 240px;
   background: #445793;
   height: 100vh;
-  animation: 2s linear 0.1s reverse both resumeShowAnimation;
+}
+
+@media (min-width: 768px) {
+  .resume-workCollection .resume-left {
+    animation: 2s linear 0.1s reverse both resumeShowAnimation;
+    padding-top: 275px;
+    min-height: 900px;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) {
+  .resume-workCollection .resume-left {
+    position: absolute;
+    top: 0;
+    padding-top: 40px;
+    transition: 1s;
+    z-index: 2;
+  }
+}
+
+.resume-workCollection .resume-left .left-menu {
+  align-self: flex-end;
+  position: absolute;
+  top: 10px;
+  animation: 1s all;
+}
+
+@media (min-width: 768px) {
+  .resume-workCollection .resume-left .left-menu {
+    display: none;
+  }
 }
 
 .resume-workCollection .resume-left .company-lists {
@@ -243,6 +301,15 @@
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .resume-workCollection .resume-left .toResume {
+    align-self: flex-end;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: auto;
+  }
+}
+
 .resume-workCollection .resume-left .toResume a {
   padding: 0 2px 5px;
   color: #445793;
@@ -262,11 +329,133 @@
   display: -ms-flexbox;
   /* IE 10 */
   display: flex;
-  width: calc(100vw - 240px);
-  height: 100vh;
-  animation: 2s linear 0.1s reverse both resumeShowAnimation;
   padding-top: 100px;
+}
+
+@media (min-width: 768px) {
+  .resume-workCollection .resume-right {
+    width: calc(100vw - 240px);
+    overflow: auto;
+    animation: 2s linear 0.1s reverse both resumeShowAnimation;
+    flex-direction: column;
+  }
+}
+
+.work-experience {
+  height: calc(100vh - 100px);
+}
+
+@media (max-width: 768px) {
+  .work-experience {
+    width: 100vw;
+    overflow: hidden;
+  }
+}
+
+.work-experience .company-wrap .company {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+}
+
+.work-experience .company-wrap .company img {
+  width: 45px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.work-experience .company-wrap .company span {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
   flex-direction: column;
+}
+
+.work-experience .company-wrap .company span .name {
+  font-style: normal;
+  font-size: 16px;
+  font-family: PingFangSC-Semibold, Arial, "Microsoft YaHei", sans-serif;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .work-experience .company-wrap .company span .name {
+    font-size: 14px;
+  }
+}
+
+.work-experience .company-wrap .company span .work {
+  margin-top: 5px;
+  font-style: normal;
+}
+
+@media (max-width: 768px) {
+  .work-experience .company-wrap .company span .work {
+    font-size: 12px;
+  }
+}
+
+.work-experience .company-wrap .title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.work-experience .company-wrap .describe p {
+  margin: 10px;
+}
+
+.work-experience .company-wrap .label {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.work-experience .company-wrap .label span {
+  color: #445793;
+  border: 1px solid #445793;
+  border-radius: 40px;
+  word-break: break-all;
+}
+
+@media (min-width: 768px) {
+  .work-experience .company-wrap .label span {
+    margin: 10px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-experience .company-wrap .label span {
+    margin: 5px;
+    font-size: 12px;
+    padding: 4px 7px;
+    display: inline-block;
+  }
 }
 
 .work-experience .item {
@@ -282,6 +471,12 @@
   /* IE 10 */
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .work-experience .item {
+    display: none;
+  }
 }
 
 .work-experience .item .left {
@@ -340,7 +535,17 @@
   padding-left: 20px;
 }
 
-.work-experience .item .right .company {
+.work-experience .mobile-item {
+  width: 100vw;
+}
+
+@media (min-width: 768px) {
+  .work-experience .mobile-item {
+    display: none;
+  }
+}
+
+.work-experience .mobile-item .drap-wrap {
   display: -webkit-box;
   /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
   display: -moz-box;
@@ -352,15 +557,11 @@
   display: -ms-flexbox;
   /* IE 10 */
   display: flex;
+  position: relative;
+  height: calc(100vh - 240px);
 }
 
-.work-experience .item .right .company img {
-  width: 45px;
-  border-radius: 8px;
-  margin-right: 10px;
-}
-
-.work-experience .item .right .company span {
+.work-experience .mobile-item .drap-wrap .card-wrap {
   display: -webkit-box;
   /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
   display: -moz-box;
@@ -372,41 +573,53 @@
   display: -ms-flexbox;
   /* IE 10 */
   display: flex;
-  flex-direction: column;
+  position: absolute;
+  top: 0;
+  justify-content: center;
 }
 
-.work-experience .item .right .company span .name {
-  font-style: normal;
-  font-size: 16px;
-  font-family: PingFangSC-Semibold, Arial, "Microsoft YaHei", sans-serif;
-  font-weight: bold;
+.work-experience .mobile-item .drap-wrap .card-wrap .card {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  background: #fff;
+  flex: 1 0 auto;
+  width: calc(100vw - 120px);
+  margin: 0 20px;
+  padding: 20px;
 }
 
-.work-experience .item .right .company span .work {
-  margin-top: 5px;
-  font-style: normal;
-}
-
-.work-experience .item .right .label,
-.work-experience .item .right .describe {
-  margin-top: 20px;
-}
-
-.work-experience .item .right .describe p {
-  margin: 10px;
-}
-
-.work-experience .item .right .label span {
+.work-experience .mobile-item .time-wrap {
+  display: -webkit-box;
+  /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+  display: -moz-box;
+  /* Firefox 17- */
+  display: -webkit-flex;
+  /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+  display: -moz-flex;
+  /* Firefox 18+ */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: flex;
+  justify-content: center;
   color: #445793;
-  border: 1px solid #445793;
-  padding: 6px 10px;
-  border-radius: 40px;
-  margin: 10px;
+  margin: 30px 0;
 }
 
-.work-details {
-  width: 800px;
-  margin: 0 auto;
+@media (min-width: 768px) {
+  .work-details {
+    margin: 0 auto;
+    width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-details {
+    width: calc(100vw - 40px);
+    margin: 0 20px 20px;
+  }
 }
 
 .work-details .name {
@@ -428,10 +641,27 @@
   margin-bottom: 5px;
 }
 
+@media (max-width: 768px) {
+  .work-details .name {
+    flex-direction: column;
+  }
+}
+
 .work-details .name .time {
-  margin-left: 10px;
   font-size: 14px;
   font-family: PingFangSC-Regular, Arial, "Microsoft Yahei", sans-serif;
+}
+
+@media (min-width: 768px) {
+  .work-details .name .time {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-details .name .time {
+    margin-top: 5px;
+  }
 }
 
 .work-details .link {
@@ -444,13 +674,40 @@
   color: #445793;
 }
 
-.work-details .skills {
-  margin-top: 10px;
-  margin-bottom: 10px;
+@media (min-width: 768px) {
+  .work-details .skills {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
-.work-details .skills p {
-  padding: 10px 0;
+@media (max-width: 768px) {
+  .work-details .skills {
+    display: -webkit-box;
+    /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+    display: -moz-box;
+    /* Firefox 17- */
+    display: -webkit-flex;
+    /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+    display: -moz-flex;
+    /* Firefox 18+ */
+    display: -ms-flexbox;
+    /* IE 10 */
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 768px) {
+  .work-details .skills p {
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-details .skills p {
+    padding: 5px 0;
+  }
 }
 
 .work-details .skills p .type {
@@ -460,12 +717,34 @@
 .work-details .skills p .label {
   color: #445793;
   border: 1px solid #445793;
-  padding: 6px 10px;
   border-radius: 40px;
-  margin: 10px;
+  word-break: break-all;
 }
 
-.work-details .functions p, .work-details .introduction p {
+@media (min-width: 768px) {
+  .work-details .skills p .label {
+    margin: 10px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-details .skills p .label {
+    margin: 5px;
+    font-size: 12px;
+    padding: 4px 7px;
+    display: inline-block;
+  }
+}
+
+@media (max-width: 768px) {
+  .work-details .carousel {
+    display: none;
+  }
+}
+
+.work-details .functions p,
+.work-details .introduction p {
   line-height: 2;
 }
 

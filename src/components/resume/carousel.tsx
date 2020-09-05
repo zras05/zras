@@ -43,7 +43,7 @@ const closeIconStyle = {
   height: '60px',
   position: 'fixed',
   right: ' 20px',
-  top: '10px',
+  top: '50px',
   width: '60px'
 } as React.CSSProperties;
 
