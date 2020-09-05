@@ -11,18 +11,14 @@ $input-width: 100px;
     @include flexbox;
     @include borderRadius;
     justify-content: space-between;
-    @media (max-width: $width-sm) {
-      flex-direction: column;
-    }
   }
   .ocr-condition {
     background: $color-white;
     padding: $margin-base;
+    flex-direction: column;
+    align-items: center;
     .zras-form {
-      width: 800px;
-      @media (max-width: $width-sm) {
-        width: 100%;
-      }
+      width: 100%;
       .row {
         @include flexbox;
         flex-direction: row;
@@ -107,10 +103,7 @@ $input-width: 100px;
     .ocr-image {
       @include flexbox;
       width: 520px;
-      @media (max-width: $width-sm) {
-        width: 100%;
-        margin-top: $margin-base;
-      }
+      margin-top: $margin-base;
       position: relative;
       flex: 1 0 auto;
       justify-content: center;
@@ -118,6 +111,9 @@ $input-width: 100px;
   }
   .ocr-result {
     margin-top: $margin-base;
+    @media (max-width: $width-sm) {
+      flex-direction: column;
+    }
     .ocr-word {
       @media (max-width: $width-sm) {
         margin-bottom: $margin-base;

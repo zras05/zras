@@ -16,8 +16,26 @@
   display: -ms-flexbox;
   /* IE 10 */
   display: flex;
+  width: 1440px;
+  margin: 0 auto;
   align-items: center;
   justify-content: space-between;
+}
+
+@media (max-width: 1440px) and (min-width: 768px) {
+  .zras-header .row {
+    width: 960px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .zras-header .row {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .zras-header .zras-logo {

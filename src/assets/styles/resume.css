@@ -128,6 +128,13 @@
 }
 
 @media (min-width: 768px) {
+  .resume-info {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 768px) {
   .resume-info .resume-logo {
     position: absolute;
     left: calc(50vw - 75px);

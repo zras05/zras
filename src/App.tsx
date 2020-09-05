@@ -22,7 +22,21 @@ interface AppState {
   ready: boolean
 }
 
-const noHeader: string[] = ['resume', 'workCollection']
+interface NoHeaderType {
+  page: string
+  url: string
+}
+
+const noHeader: NoHeaderType[] = [
+  {
+    page: 'resume',
+    url: '/resume'
+  },
+  {
+    page: 'workCollection',
+    url: '/resume'
+  }
+]
 
 class App extends React.Component<any, AppState> {
 
@@ -40,11 +54,12 @@ class App extends React.Component<any, AppState> {
   public render() {
     const { ready } = this.state
     const curPath = this.props.location.pathname.split('/')[1]
-    let  isShowHeader: boolean = true
-
+    let isShowHeader: boolean = true
+    let pageUrl: string = ''
     for (const i in noHeader) {
-      if (noHeader[i] === curPath) {
+      if (noHeader[i].page === curPath) {
         isShowHeader = false
+        pageUrl = noHeader[i].url
       }
     }
     if (!ready) {
@@ -57,7 +72,7 @@ class App extends React.Component<any, AppState> {
       <Provider store={store}>
         <div className="App">
           {
-            isShowHeader ? <Header /> : <NoHeader />
+            isShowHeader ? <Header /> : <NoHeader url={pageUrl} />
           }
           <Switch>
             <Redirect exact={true} path={"/"} from={"/"} to={"/home"} />

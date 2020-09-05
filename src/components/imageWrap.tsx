@@ -75,7 +75,7 @@ export const ImageWrap = class extends React.Component<ImagePropsType, any> {
         style={{ height: `${baseHeight}px` }}
       >
         {
-          !isError
+          isError
             ? <BrokenImage className="broken" />     
             : <img src={imgurl} style={{ width: `${width}px`, height: `${height}px` }} />
         }

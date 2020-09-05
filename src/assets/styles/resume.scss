@@ -20,7 +20,7 @@
   }
 }
 
-.zras-resume {
+.zras-resume { 
   @include flexbox;
   position: relative;
   justify-content: space-between;
@@ -105,13 +105,15 @@
     align-items: center;
     padding: 60px 0;
   }
+  @media (min-width: $width-sm) {
+    height: 100vh;
+    overflow: hidden;
+  }
   .resume-logo {
     @media (min-width: $width-sm) {
       position: absolute;
       left: calc(50vw - 75px);
       animation: 1s linear 1s reverse both logoWrapTopAnimation;
-    }
-    @media (max-width: $width-sm) {
     }
   }
   .resume-cont {

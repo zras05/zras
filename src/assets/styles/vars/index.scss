@@ -26,8 +26,13 @@
 @mixin pageWidth {
   width: $width-lg;
   margin: 0 auto;
-  @media (max-width: $width-lg) and (min-width: $width-sm) {
+  @media (max-width: $width-lg) and (min-width: $width-md) {
     width: $width-md;
+    padding-left: $margin-base;
+    padding-right: $margin-base; 
+  }
+  @media (max-width: $width-md) and (min-width: $width-sm) {
+    width: $width-sm;
     padding-left: $margin-base;
     padding-right: $margin-base; 
   }

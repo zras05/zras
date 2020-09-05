@@ -12,15 +12,14 @@ export const Home = class extends React.Component<any> {
   public render() {
     return (
       <div className="zras-page zras-home">
-        {/* <Loading /> */}
         <p>
           <NavLink to={'/resume'}>
-            Resume
+            简历
         </ NavLink>
         </p>
         <p>
           <NavLink to={'/requestTest'}>
-            requestTest
+            测试
         </ NavLink>
         </p>
       </div>
